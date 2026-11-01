@@ -1,0 +1,2769 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gabriel Rangel · Desenvolvedor Web Júnior</title>
+<link rel="canonical" href="https://rangel202.github.io/">
+<meta name="description" content="Gabriel Rangel, desenvolvedor web júnior: sites para clientes, APIs com Node.js, testes automatizados e suporte de TI.">
+<meta name="author" content="Gabriel Puchivailo Rangel">
+<meta name="theme-color" content="#0b0e17">
+<!-- Prévia do link no LinkedIn, WhatsApp e redes -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Gabriel Rangel">
+<meta property="og:title" content="Gabriel Rangel · Desenvolvedor Web Júnior">
+<meta property="og:description" content="Sites para clientes, APIs com Node.js, testes automatizados e suporte de TI. Veja meus projetos.">
+<meta property="og:url" content="https://rangel202.github.io/">
+<meta property="og:image" content="https://rangel202.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gabriel Rangel, desenvolvedor web júnior">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236d96ff'/%3E%3Cstop offset='1' stop-color='%23ff9a5c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Consolas,monospace' font-size='26' font-weight='700' text-anchor='middle' fill='%230b0e17'%3EGR%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: "da interface ao banco". Herói com circuito animado ao fundo e o fluxo cliente → API → banco ao vivo; seções rotuladas como rotas HTTP; terminal interativo, rede animada, projetos com prints e repositórios ao vivo do GitHub. Três temas: noite (padrão), circuito e claro. */
+:root {
+  --bg: #0b0e17;
+  --surface: #121727;
+  --surface-2: #1a2136;
+  --line: #262f4a;
+  --text: #e9edf7;
+  --muted: #8f99b4;
+  --primary: #6d96ff;
+  --primary-ink: #0b0e17;
+  --primary-soft: rgba(109, 150, 255, 0.14);
+  --accent: #ff9a5c;
+  --accent-soft: rgba(255, 154, 92, 0.13);
+  --ok: #3ecf8e;
+  --dot: rgba(143, 153, 180, 0.11);
+  --shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.8);
+  --syn-k: #c792ea;
+  --syn-s: #c3e88d;
+  --syn-f: #82aaff;
+  --syn-n: #f78c6c;
+  --syn-c: #697098;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Manrope", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: clamp(2rem, 3.8vw, 3.1rem);
+  --text-hero: clamp(3.2rem, 8.2vw, 6.9rem);
+
+  --radius: 16px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface-2: #edf1f9;
+    --line: #d9e0ee;
+    --text: #0f1529;
+    --muted: #56607a;
+    --primary: #2f5bea;
+    --primary-ink: #ffffff;
+    --primary-soft: rgba(47, 91, 234, 0.1);
+    --accent: #b84a12;
+    --accent-soft: rgba(184, 74, 18, 0.09);
+    --ok: #0f7a50;
+    --dot: rgba(86, 96, 122, 0.13);
+    --shadow: 0 30px 60px -40px rgba(15, 21, 41, 0.35);
+    --syn-k: #7c3aed;
+    --syn-s: #2e7d32;
+    --syn-f: #1f5fd6;
+    --syn-n: #c2410c;
+    --syn-c: #7a8197;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --surface-2: #edf1f9;
+  --line: #d9e0ee;
+  --text: #0f1529;
+  --muted: #56607a;
+  --primary: #2f5bea;
+  --primary-ink: #ffffff;
+  --primary-soft: rgba(47, 91, 234, 0.1);
+  --accent: #b84a12;
+  --accent-soft: rgba(184, 74, 18, 0.09);
+  --ok: #0f7a50;
+  --dot: rgba(86, 96, 122, 0.13);
+  --shadow: 0 30px 60px -40px rgba(15, 21, 41, 0.35);
+  --syn-k: #7c3aed;
+  --syn-s: #2e7d32;
+  --syn-f: #1f5fd6;
+  --syn-n: #c2410c;
+  --syn-c: #7a8197;
+  color-scheme: light;
+}
+/* Tema "circuito": verde de placa e dourado (o primeiro visual do portfólio) */
+:root[data-palette="circuito"] {
+  --bg: #07130e;
+  --surface: #0c1d16;
+  --surface-2: #13291f;
+  --line: #1f3f31;
+  --text: #e6eee8;
+  --muted: #92a89a;
+  --primary: #e3a63b;
+  --primary-ink: #1a1206;
+  --primary-soft: rgba(227, 166, 59, 0.15);
+  --accent: #4fd98a;
+  --accent-soft: rgba(79, 217, 138, 0.12);
+  --ok: #4fd98a;
+  --dot: rgba(146, 168, 154, 0.1);
+  --shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.85);
+  --syn-k: #e3a63b;
+  --syn-s: #8fe3b0;
+  --syn-f: #7cc4ff;
+  --syn-n: #ffb27a;
+  --syn-c: #6f8a7b;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--bg);
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+code { font-family: var(--font-mono); font-size: 0.92em; padding: 1px 6px; border-radius: 6px; background: var(--surface-2); }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* Trecho que ainda precisa ser preenchido no PERFIL */
+.todo {
+  background: var(--accent-soft);
+  color: var(--accent);
+  outline: 1px dashed var(--accent);
+  outline-offset: -1px;
+  border-radius: 4px;
+  padding: 0 5px;
+  font-style: normal;
+}
+.wrap {
+  width: 100%;
+  max-width: 1248px;
+  margin-inline: auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* Barra de leitura e luz do mouse */
+.progress {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  height: 2px;
+  transform: scaleX(var(--p, 0));
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  pointer-events: none;
+}
+.spot { display: none; }
+@media (pointer: fine) {
+  .spot {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(520px circle at var(--mx, 50%) var(--my, -50%), var(--primary-soft), transparent 65%);
+  }
+}
+
+/* ---------- Cabeçalho ---------- */
+.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.top.scrolled, .top.open {
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-color: var(--line);
+}
+.top-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; min-width: 0; text-decoration: none; }
+.logo-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--primary-ink);
+  font: 700 0.9rem / 1 var(--font-mono);
+  letter-spacing: -0.03em;
+}
+.logo-name {
+  font: 700 1.08rem / 1.2 var(--font-display);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav { display: flex; align-items: center; gap: 10px; }
+.nav-links { display: flex; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.nav-links a {
+  position: relative;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s, background-color 0.15s;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface); }
+.nav-links a[aria-current] { color: var(--text); }
+.nav-links a[aria-current]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+.themes { display: inline-flex; gap: 3px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+.sw { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; }
+.sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.45); }
+.sw[data-tema="noite"] i { background: linear-gradient(135deg, #0b0e17 50%, #6d96ff 50%); }
+.sw[data-tema="circuito"] i { background: linear-gradient(135deg, #07130e 50%, #e3a63b 50%); }
+.sw[data-tema="claro"] i { background: linear-gradient(135deg, #f4f6fb 50%, #2f5bea 50%); }
+.sw[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--primary); }
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  height: 40px;
+  min-width: 40px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--text);
+  font: 600 var(--text-sm) / 1 var(--font-body);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.icon-btn:hover { border-color: var(--primary); }
+.menu-btn { display: none; }
+
+/* ---------- Início ---------- */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -140px 0 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(720px 440px at 80% 22%, var(--primary-soft), transparent 70%),
+    radial-gradient(560px 400px at 6% 88%, var(--accent-soft), transparent 70%);
+}
+.hero-canvas { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; }
+.hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 72%, transparent) 46%, color-mix(in srgb, var(--bg) 30%, transparent) 100%),
+    linear-gradient(0deg, var(--bg) 0%, transparent 30%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 64px;
+  align-items: center;
+  padding-block: 64px 72px;
+}
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; min-width: 0; }
+.notice {
+  margin: 0;
+  padding: 7px 12px;
+  border: 1px dashed var(--accent);
+  border-radius: 9px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font: 500 var(--text-xs) / 1.5 var(--font-mono);
+}
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  padding: 6px 14px 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 600 var(--text-xs) / 1.4 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.status svg { width: 13px; height: 13px; color: var(--accent); }
+.led {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ok) 25%, transparent);
+  animation: led 2.4s ease-in-out infinite;
+}
+.led-s { width: 6px; height: 6px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 25%, transparent); }
+@keyframes led { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--ok) 6%, transparent); } }
+.hello { margin: 0 0 -14px; font: 500 var(--text-md) / 1.4 var(--font-mono); color: var(--muted); }
+.name {
+  margin: 0;
+  font: 800 var(--text-hero) / 0.9 var(--font-display);
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+.name span { display: block; }
+.name .grad {
+  padding-bottom: 0.06em;
+  background: linear-gradient(100deg, var(--primary) 10%, var(--accent) 95%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: flow 8s ease-in-out infinite alternate;
+}
+@keyframes flow { to { background-position: 100% 0; } }
+.role { margin: 0; min-height: 1.6em; font: 500 var(--text-lg) / 1.5 var(--font-mono); }
+.role-pre { color: var(--primary); margin-right: 10px; }
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: var(--primary);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.bio { margin: 0; max-width: 50ch; color: var(--muted); font-size: 1.12rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 6px; }
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  padding: 13px 22px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font: 700 0.95rem / 1.2 var(--font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.15s, filter 0.15s, transform 0.15s, background-color 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--primary); color: var(--primary-ink); box-shadow: 0 12px 30px -14px var(--primary); }
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s;
+}
+.btn-primary:hover::after { left: 130%; }
+.btn-ghost { background: var(--surface); border-color: var(--line); color: var(--text); }
+.btn-ghost:hover { border-color: var(--primary); }
+.btn-sm { padding: 8px 14px; font-size: var(--text-sm); border-radius: 10px; }
+.btn kbd { padding: 1px 6px; border-radius: 5px; background: var(--surface-2); font: 700 0.75rem / 1.4 var(--font-mono); color: var(--primary); }
+.socials { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; padding: 0; list-style: none; font: 500 var(--text-sm) / 1.4 var(--font-mono); }
+.socials a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.socials a:hover { color: var(--primary); border-color: var(--primary); }
+
+/* Janela com o fluxo da aplicação */
+.stack-card, .shell, .net-card, .code-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.win-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-2);
+  font: 500 var(--text-xs) / 1.2 var(--font-mono);
+  color: var(--muted);
+}
+.dots { display: flex; gap: 6px; flex: none; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.dots i:nth-child(1) { background: color-mix(in srgb, var(--accent) 70%, var(--line)); }
+.dots i:nth-child(2) { background: color-mix(in srgb, var(--primary) 55%, var(--line)); }
+.dots i:nth-child(3) { background: color-mix(in srgb, var(--ok) 60%, var(--line)); }
+.win-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.win-live { display: inline-flex; align-items: center; gap: 7px; color: var(--ok); }
+.flow { display: flex; align-items: stretch; padding: 30px 20px 26px; }
+.node {
+  display: flex;
+  flex: 0 1 136px;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding: 13px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  animation: hit 3.2s linear infinite;
+}
+.n2 { animation-delay: 0.6s; }
+.n3 { animation-delay: 1.3s; }
+.n1 { animation-delay: 2.7s; }
+@keyframes hit {
+  0%, 10%, 100% { border-color: var(--line); box-shadow: none; }
+  3% { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); }
+}
+.node-k { font: 600 0.64rem / 1.2 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.node strong { font: 700 1.02rem / 1.25 var(--font-display); }
+.node small { font: 500 0.7rem / 1.35 var(--font-mono); color: var(--primary); overflow-wrap: anywhere; }
+.wire { position: relative; flex: 1 1 40px; min-width: 22px; }
+.wire::before, .wire::after { content: ""; position: absolute; left: 0; right: 0; border-top: 1px dashed var(--line); }
+.wire::before { top: 44%; }
+.wire::after { top: 60%; }
+.wire-k {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  font: 600 0.6rem / 1 var(--font-mono);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.pkt { position: absolute; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; opacity: 0; animation: 3.2s linear infinite; }
+.pkt.req { top: 44%; background: var(--primary); box-shadow: 0 0 10px var(--primary); animation-name: go; }
+.pkt.res { top: 60%; background: var(--ok); box-shadow: 0 0 10px var(--ok); animation-name: back; }
+.w2 .req { animation-delay: 0.7s; }
+.w2 .res { animation-delay: 1.4s; }
+.w1 .res { animation-delay: 2.1s; }
+@keyframes go {
+  0% { left: 0; opacity: 0; }
+  3% { opacity: 1; }
+  19% { left: calc(100% - 8px); opacity: 1; }
+  22%, 100% { left: calc(100% - 8px); opacity: 0; }
+}
+@keyframes back {
+  0% { left: calc(100% - 8px); opacity: 0; }
+  3% { opacity: 1; }
+  19% { left: 0; opacity: 1; }
+  22%, 100% { left: 0; opacity: 0; }
+}
+.log { margin: 0; padding: 6px 16px 10px; list-style: none; border-top: 1px solid var(--line); font: 400 0.78rem / 1.5 var(--font-mono); }
+.log li {
+  display: grid;
+  grid-template-columns: auto 3.4em minmax(0, 1fr) auto 3.6em;
+  gap: 12px;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.log li:last-child { border-bottom: 0; animation: logIn 0.45s ease-out; }
+@keyframes logIn { from { transform: translateY(6px); opacity: 0.2; } }
+.log time, .log .ms { color: var(--muted); font-variant-numeric: tabular-nums; }
+.log .ms { text-align: right; }
+.log .path { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.m { font-weight: 600; }
+.m-get { color: var(--primary); }
+.m-post { color: var(--accent); }
+.code-ok { color: var(--ok); font-weight: 600; }
+.win-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 12px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+  font: 500 var(--text-xs) / 1.3 var(--font-mono);
+  color: var(--muted);
+}
+.uptime { font-variant-numeric: tabular-nums; }
+
+/* Faixas de tecnologias */
+.marquee {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track { display: flex; width: max-content; animation: marquee 55s linear infinite; }
+.marquee-track.rev { border-top: 1px solid var(--line); animation-direction: reverse; animation-duration: 65s; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 22px;
+  font: 600 1.05rem / 1 var(--font-display);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.marquee-track span i { width: 9px; height: 9px; border-radius: 3px; background: var(--c); }
+@keyframes marquee { to { transform: translateX(calc(-100% / 3)); } }
+
+/* ---------- Seções ---------- */
+.section { padding-block: 120px 0; }
+.sec-head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 52px; }
+.route {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 500 var(--text-xs) / 1.3 var(--font-mono);
+  color: var(--muted);
+}
+.route b { font-weight: 700; color: var(--primary); }
+.route.post b { color: var(--accent); }
+.section h2 {
+  margin: 0;
+  max-width: 20ch;
+  font: 700 var(--text-xl) / 1.06 var(--font-display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+/* Brilho que passa pelo título quando a seção aparece */
+.sec-head h2.sweep {
+  background: linear-gradient(100deg, var(--text) 0 42%, var(--primary) 48%, var(--accent) 52%, var(--text) 58% 100%);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sec-head h2.sweep.go { animation: sweep 1.5s ease-out 1; }
+@keyframes sweep { from { background-position: 100% 0; } to { background-position: 0 0; } }
+.lead { margin: 0; max-width: 58ch; color: var(--muted); font-size: 1.08rem; }
+.sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 0 0 20px; font: 700 1.35rem / 1.2 var(--font-display); letter-spacing: -0.015em; }
+.sub .count { font: 500 var(--text-xs) / 1 var(--font-mono); color: var(--muted); }
+.block-gap { margin-top: 80px; }
+
+/* Cartões com brilho no hover */
+.glow { position: relative; }
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  background: radial-gradient(380px circle at var(--x, 50%) var(--y, 50%), var(--primary-soft), transparent 60%);
+}
+.glow:hover::after { opacity: 1; }
+
+/* ---------- Terminal ---------- */
+.shell-body {
+  height: 440px;
+  overflow-y: auto;
+  padding: 18px 22px 10px;
+  font: 400 0.86rem / 1.6 var(--font-mono);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.ln { white-space: pre-wrap; overflow-wrap: anywhere; animation: lnIn 0.25s ease-out; }
+@keyframes lnIn { from { opacity: 0.35; transform: translateY(3px); } }
+.t-user { color: var(--ok); font-weight: 600; }
+.t-path { color: var(--primary); font-weight: 600; }
+.t-k { color: var(--primary); font-weight: 600; }
+.t-dim { color: var(--muted); }
+.t-ok { color: var(--ok); }
+.t-err { color: var(--accent); }
+.t-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.t-help { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 2px 16px; margin: 2px 0 6px; }
+.neo { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 30px; align-items: start; margin: 2px 0 12px; }
+.neo-logo {
+  margin: 4px 0 0;
+  font: 700 0.82rem / 1.15 var(--font-mono);
+  white-space: pre;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.neo-info { display: flex; flex-direction: column; min-width: 0; }
+.neo-info b { color: var(--primary); font-weight: 600; }
+.palette { display: flex; margin-top: 10px; }
+.palette i { width: 22px; height: 12px; background: var(--c); }
+.shell-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+  font: 500 0.86rem / 1.4 var(--font-mono);
+}
+.shell-input:focus-within { box-shadow: inset 0 2px 0 var(--primary); }
+.shell-input label { flex: none; white-space: nowrap; }
+.shell-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  caret-color: var(--primary);
+}
+.shell-input input::placeholder { color: var(--muted); opacity: 0.8; }
+.shell-hints { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 22px 16px; border-top: 1px dashed var(--line); }
+.hint {
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font: 500 0.75rem / 1.3 var(--font-mono);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.hint:hover { color: var(--text); border-color: var(--primary); }
+
+/* ---------- Sobre ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+.about-text { display: flex; flex-direction: column; gap: 18px; max-width: 60ch; color: var(--muted); font-size: 1.08rem; }
+.about-text p { margin: 0; }
+.about-text p:first-child { color: var(--text); font-size: 1.3rem; line-height: 1.55; font-weight: 500; }
+.about-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.facts { margin: 0; padding: 6px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.fact { display: flex; justify-content: space-between; gap: 20px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.fact:last-child { border-bottom: 0; }
+.fact dt { padding-top: 3px; font: 600 var(--text-xs) / 1.4 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.fact dd { margin: 0; font-weight: 700; text-align: right; }
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-soft), transparent 65%), var(--surface);
+}
+.callout-k { font: 700 var(--text-xs) / 1.3 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.callout p { margin: 0 0 4px; font: 600 1.2rem / 1.4 var(--font-display); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 56px 0 0; }
+.stat { padding: 22px 22px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.stat dt {
+  font: 800 clamp(2.2rem, 4vw, 3rem) / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(100deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stat dd { margin: 8px 0 0; color: var(--muted); font-size: 0.92rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 7px; background: var(--surface-2); font: 500 0.74rem / 1.45 var(--font-mono); }
+.tags li i, .tech li i, .ldot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+
+/* ---------- Habilidades ---------- */
+.bento { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.skill {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.skill:hover { border-color: color-mix(in srgb, var(--primary) 55%, var(--line)); transform: translateY(-2px); }
+.skill.wide {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-rows: auto 1fr;
+  gap: 20px 36px;
+}
+.skill.wide .examples { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+.skill.full { grid-column: 1 / -1; }
+.skill-head { display: flex; align-items: center; gap: 14px; }
+.skill-ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font: 700 0.82rem / 1 var(--font-mono);
+}
+.skill h3 { margin: 0; font: 700 1.4rem / 1.2 var(--font-display); letter-spacing: -0.015em; }
+.skill-count { margin-left: auto; font: 500 var(--text-xs) / 1.3 var(--font-mono); color: var(--muted); white-space: nowrap; }
+.tech { display: flex; flex-wrap: wrap; align-items: flex-start; align-content: flex-start; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tech li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-2);
+  font: 600 0.8rem / 1.2 var(--font-mono);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.tech li:hover { transform: translateY(-2px); border-color: var(--c); }
+.examples { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; color: var(--muted); font-size: 0.98rem; }
+.examples li { position: relative; padding-left: 26px; }
+.examples li::before { content: "→"; position: absolute; left: 0; color: var(--primary); font-family: var(--font-mono); }
+
+/* ---------- Infra ---------- */
+.infra-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 32px; align-items: start; }
+.net-scroll { overflow-x: auto; padding: 22px 18px; }
+.net-scroll svg { display: block; width: 100%; min-width: 470px; height: auto; }
+.nd { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.4; }
+.nd.core { stroke: var(--primary); animation: core 2.4s ease-in-out infinite; }
+@keyframes core { 50% { stroke-opacity: 0.35; } }
+.nt { fill: var(--text); font: 600 12px var(--font-mono); }
+.ns { fill: var(--muted); font: 500 9.5px var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.lk { fill: none; stroke: var(--line); stroke-width: 2; }
+.lk.cloud { stroke-dasharray: 4 5; }
+.pk-a { fill: var(--primary); }
+.pk-b { fill: var(--ok); }
+.pk-c { fill: var(--accent); }
+.infra-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: border-color 0.2s;
+}
+.checks li:hover { border-color: var(--ok); }
+.checks li::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ok) 16%, transparent);
+  color: var(--ok);
+  font: 700 0.78rem / 1 var(--font-mono);
+}
+
+/* ---------- Projetos ---------- */
+.feat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.cli-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.acad-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pcard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  will-change: transform;
+}
+.pcard:hover { border-color: color-mix(in srgb, var(--primary) 55%, var(--line)); box-shadow: var(--shadow); }
+.pbody { display: flex; flex: 1; flex-direction: column; gap: 12px; min-width: 0; padding: 22px; }
+.pcard.big .pbody { gap: 14px; padding: 26px 28px 28px; }
+.pcard h4 { margin: 0; font: 700 1.22rem / 1.2 var(--font-display); letter-spacing: -0.015em; }
+.pcard.big h4 { font-size: 1.7rem; letter-spacing: -0.025em; }
+.pcard p { margin: 0; color: var(--muted); font-size: 0.93rem; }
+.pcard p b { color: var(--text); font-weight: 700; }
+.badge-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 700 0.64rem / 1.6 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.badge.cliente { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.badge.academico { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+.badge.live { border-color: color-mix(in srgb, var(--ok) 50%, var(--line)); color: var(--ok); }
+.plinks { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
+.plinks .off { font: 500 var(--text-xs) / 1.4 var(--font-mono); color: var(--muted); }
+.mock { display: flex; padding: 16px; background: var(--surface-2); border-bottom: 1px solid var(--line); }
+.pcard.big .mock { padding: 22px; }
+.mock-win {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--bg);
+  box-shadow: var(--shadow);
+}
+.mock-bar { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--surface); }
+.mock-bar .dots i { width: 8px; height: 8px; }
+.mock-url {
+  flex: 1;
+  min-width: 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font: 500 0.68rem / 1.5 var(--font-mono);
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mock-view { position: relative; aspect-ratio: 16 / 10; max-width: 100%; overflow: hidden; background: var(--bg); }
+.mock-view img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.6s; }
+.pcard:hover .mock-view img { transform: scale(1.04); }
+.term {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 16px 18px;
+  overflow: hidden;
+  font: 500 0.76rem / 1.65 var(--font-mono);
+  color: var(--text);
+  white-space: pre-wrap;
+}
+.term .k { color: var(--primary); }
+.term .ok { color: var(--ok); }
+.term .dim { color: var(--muted); }
+.term .str { color: var(--accent); }
+
+/* Código real */
+.code-intro { margin: 28px 0 14px; color: var(--muted); }
+.code-intro a { color: var(--primary); }
+.code-tabs { display: flex; align-items: stretch; overflow-x: auto; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+.code-tab {
+  padding: 12px 16px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: 500 0.76rem / 1.2 var(--font-mono);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.code-tab:hover { color: var(--text); }
+.code-tab[aria-selected="true"] { color: var(--text); background: var(--surface); box-shadow: inset 0 2px 0 var(--primary); }
+.code-meta { display: flex; align-items: center; margin-left: auto; padding: 0 16px; font: 500 0.72rem / 1.2 var(--font-mono); white-space: nowrap; }
+.code-meta a { color: var(--primary); text-decoration: none; }
+.code {
+  max-height: 460px;
+  margin: 0;
+  padding: 18px 0;
+  overflow: auto;
+  counter-reset: ln;
+  font: 400 0.82rem / 1.7 var(--font-mono);
+  tab-size: 4;
+}
+.code .line { display: block; min-height: 1.7em; padding-right: 24px; white-space: pre; }
+.code .line::before {
+  content: counter(ln);
+  counter-increment: ln;
+  display: inline-block;
+  width: 3.4em;
+  padding-right: 1.4em;
+  text-align: right;
+  color: var(--syn-c);
+  user-select: none;
+}
+.tk-k { color: var(--syn-k); }
+.tk-s { color: var(--syn-s); }
+.tk-f { color: var(--syn-f); }
+.tk-n { color: var(--syn-n); }
+.tk-c { color: var(--syn-c); font-style: italic; }
+
+/* Repositórios ao vivo */
+.repos-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 18px; }
+.repos-head .sub { margin: 0; }
+.repos-head .gh { margin-left: auto; font: 600 var(--text-sm) / 1.3 var(--font-mono); color: var(--primary); text-decoration: none; }
+.src { display: inline-flex; align-items: center; gap: 7px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.7rem / 1.4 var(--font-mono); color: var(--muted); }
+.src.live { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 45%, var(--line)); }
+.langbar { display: flex; gap: 2px; height: 10px; overflow: hidden; border-radius: 999px; background: var(--surface-2); }
+.langbar i { height: 100%; background: var(--c); }
+.lang-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 12px 0 22px; padding: 0; list-style: none; font: 500 0.78rem / 1.3 var(--font-mono); color: var(--muted); }
+.lang-legend li { display: inline-flex; align-items: center; gap: 7px; }
+.lang-legend b { color: var(--text); font-weight: 600; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.filter {
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font: 600 0.8rem / 1.2 var(--font-body);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.filter:hover { color: var(--text); border-color: var(--primary); }
+.filter[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+.repo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.repo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  transition: border-color 0.2s, transform 0.2s;
+  animation: lnIn 0.35s ease-out;
+}
+.repo:hover { border-color: color-mix(in srgb, var(--primary) 55%, var(--line)); transform: translateY(-2px); }
+.repo-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.repo-top svg { flex: none; width: 16px; height: 16px; color: var(--muted); }
+.repo-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 600 0.9rem / 1.3 var(--font-mono); color: var(--primary); text-decoration: none; }
+.repo-name:hover { text-decoration: underline; text-underline-offset: 3px; }
+.repo p { display: -webkit-box; margin: 0; overflow: hidden; color: var(--muted); font-size: 0.88rem; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.repo p.vazio { font-style: italic; opacity: 0.8; }
+.topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.topics li { padding: 2px 8px; border-radius: 999px; background: var(--primary-soft); color: var(--primary); font: 600 0.68rem / 1.5 var(--font-mono); }
+.repo-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: auto; padding-top: 4px; font: 500 0.74rem / 1.4 var(--font-mono); color: var(--muted); }
+.repo-foot span { display: inline-flex; align-items: center; gap: 6px; }
+.repo-foot a { margin-left: auto; color: var(--accent); text-decoration: none; }
+.repo-foot a:hover { text-decoration: underline; }
+
+/* ---------- Trajetória ---------- */
+.timeline { position: relative; margin: 0; padding: 0; list-style: none; }
+.tl-progress {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 0;
+  border-radius: 2px;
+  background: linear-gradient(var(--primary), var(--accent));
+  box-shadow: 0 0 12px var(--primary-soft);
+  pointer-events: none;
+}
+.tl-item { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 44px; }
+.tl-when {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+  text-align: right;
+  font: 500 var(--text-sm) / 1.4 var(--font-mono);
+  color: var(--muted);
+}
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 700 0.66rem / 1.5 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.tl-dur { color: var(--text); }
+.tl-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 0 52px 38px;
+  border-left: 2px solid var(--line);
+}
+.tl-item:last-child .tl-body { padding-bottom: 8px; }
+.tl-body::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 0 5px var(--primary-soft);
+  transition: background-color 0.3s;
+}
+.tl-item.lit .tl-body::before { background: var(--primary); }
+.tl-body h3 { margin: 0; font: 700 1.4rem / 1.25 var(--font-display); letter-spacing: -0.015em; }
+.tl-where { margin: 0; font: 600 var(--text-sm) / 1.4 var(--font-mono); color: var(--primary); }
+.tl-text { margin: 0; max-width: 62ch; color: var(--muted); }
+
+/* ---------- Currículo ---------- */
+.section-cv { padding-top: 96px; }
+.cv {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 24px 28px;
+  align-items: center;
+  padding: 30px 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, var(--primary-soft), transparent 55%), var(--surface);
+}
+.cv-file {
+  display: grid;
+  place-items: end center;
+  width: 58px;
+  height: 72px;
+  padding-bottom: 11px;
+  border: 2px solid var(--primary);
+  border-radius: 7px 18px 7px 7px;
+  font: 700 0.72rem / 1 var(--font-mono);
+  color: var(--primary);
+}
+.cv-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cv-title { margin: 0; font: 700 1.5rem / 1.2 var(--font-display); letter-spacing: -0.02em; }
+.cv-meta { font: 500 var(--text-sm) / 1.5 var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.cv-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- Contato ---------- */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  padding: 60px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(620px 320px at 100% 0%, var(--primary-soft), transparent 70%),
+    radial-gradient(520px 320px at 0% 100%, var(--accent-soft), transparent 70%),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+.contact .sec-head { margin-bottom: 0; }
+.contact h2 { font-size: clamp(2.3rem, 4.6vw, 3.7rem); }
+.contact-box { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.label { font: 700 var(--text-xs) / 1.3 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.email-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--bg);
+}
+.email { flex: 1; min-width: 0; font: 600 1rem / 1.4 var(--font-mono); text-decoration: none; overflow-wrap: anywhere; }
+a.email:hover { color: var(--primary); }
+.copy-msg { min-height: 1.4em; margin: 0; font-size: var(--text-sm); color: var(--ok); }
+.channels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.channel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--bg);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+a.channel:hover { border-color: var(--primary); transform: translateY(-2px); }
+.channel-name { font: 700 1.02rem / 1.3 var(--font-display); }
+.channel-val { font: 500 0.74rem / 1.45 var(--font-mono); color: var(--muted); overflow-wrap: anywhere; }
+.quick { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.quick textarea {
+  width: 100%;
+  min-height: 92px;
+  resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 0.95rem / 1.5 var(--font-body);
+}
+.quick textarea:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.quick .btn { align-self: flex-start; }
+
+/* Rodapé */
+.foot { margin-top: 120px; border-top: 1px solid var(--line); }
+.foot-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 32px;
+  font: 500 var(--text-xs) / 1.5 var(--font-mono);
+  color: var(--muted);
+}
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--primary); }
+.to-top {
+  position: fixed;
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 15;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--surface);
+  color: var(--text);
+  font: 600 1.1rem / 1 var(--font-mono);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.to-top:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1180px) {
+  .menu-btn { display: inline-grid; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding-block: 8px 14px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .top.open .nav-links { display: flex; }
+  .nav-links a { padding: 13px 10px; font-size: var(--text-md); }
+  .nav-links a[aria-current]::after { left: auto; right: 12px; bottom: 50%; margin: 0 0 -2px; }
+  .cli-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .hero-grid { gap: 44px; }
+  .contact { padding: 48px; gap: 40px; }
+}
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); padding-block: 44px 60px; }
+  .stack-card { max-width: 580px; }
+  .about-grid, .infra-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tl-item { grid-template-columns: 160px minmax(0, 1fr); gap: 30px; }
+  .feat-grid, .acad-grid { grid-template-columns: minmax(0, 1fr); }
+  .repo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .wrap {
+    padding-left: max(18px, env(safe-area-inset-left, 0px));
+    padding-right: max(18px, env(safe-area-inset-right, 0px));
+  }
+  .section { padding-top: 88px; }
+  .section-cv { padding-top: 72px; }
+  .sec-head { margin-bottom: 36px; }
+  .hello { margin-bottom: -12px; }
+  .actions .btn { flex: 1 1 auto; }
+  .flow { padding: 24px 12px 20px; }
+  .node { padding: 10px 8px; }
+  .node strong { font-size: 0.9rem; }
+  .wire-k { display: none; }
+  .log { padding-inline: 12px; }
+  .log li { grid-template-columns: 3.2em minmax(0, 1fr) auto 3.4em; gap: 10px; }
+  .log time { display: none; }
+  .shell-body { height: 400px; padding: 14px 14px 8px; font-size: 0.8rem; }
+  .shell-input { padding: 12px 14px; font-size: 0.8rem; }
+  .shell-input .u { display: none; }
+  .shell-hints { padding: 12px 14px 14px; }
+  .neo { grid-template-columns: minmax(0, 1fr); }
+  .neo-logo { font-size: 0.7rem; }
+  .t-help { grid-template-columns: 8em minmax(0, 1fr); }
+  .stats { gap: 12px; }
+  .stat { padding: 18px 16px; }
+  .bento, .cli-grid, .repo-grid, .checks { grid-template-columns: minmax(0, 1fr); }
+  .skill { padding: 22px; }
+  .skill.wide { grid-column: auto; display: flex; }
+  .tl-item { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .tl-when {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 0 12px 38px;
+    border-left: 2px solid var(--line);
+    text-align: left;
+  }
+  .tl-body { padding-bottom: 44px; }
+  .mock, .pcard.big .mock { padding: 12px; }
+  .pbody, .pcard.big .pbody { padding: 20px; }
+  .pcard.big h4 { font-size: 1.4rem; }
+  .cv { grid-template-columns: auto minmax(0, 1fr); padding: 24px; }
+  .cv-actions { grid-column: 1 / -1; }
+  .contact { padding: 30px 20px; border-radius: 20px; }
+  .channels { grid-template-columns: minmax(0, 1fr); }
+  .foot { margin-top: 88px; }
+}
+@media (max-width: 420px) {
+  .logo-name { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .caret, .led, .node, .marquee-track, .log li:last-child, .name .grad, .nd.core, .ln, .repo { animation: none; }
+  .pkt, .pk { display: none; }
+  .sec-head h2.sweep.go { animation: none; }
+  .btn, .skill, .pcard, .channel, .to-top, .glow::after, .repo, .tech li, .mock-view img { transition: none; }
+  .btn:hover, .skill:hover, .repo:hover, a.channel:hover, .to-top:hover, .tech li:hover { transform: none; }
+  .pcard:hover .mock-view img { transform: none; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <div class="wrap top-row">
+    <a class="logo" href="#inicio" aria-label="Voltar ao início">
+      <span class="logo-mark" id="logo-mark">GR</span>
+      <span class="logo-name" id="logo-name">Gabriel Rangel</span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#terminal">Terminal</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#infra">Infra</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#trajetoria">Trajetória</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="themes" role="group" aria-label="Tema de cores">
+        <button class="sw" type="button" data-tema="noite" aria-pressed="false" aria-label="Tema azul noite" title="Azul noite"><i></i></button>
+        <button class="sw" type="button" data-tema="circuito" aria-pressed="false" aria-label="Tema circuito verde e dourado" title="Circuito"><i></i></button>
+        <button class="sw" type="button" data-tema="claro" aria-pressed="false" aria-label="Tema claro" title="Claro"><i></i></button>
+      </div>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio" aria-labelledby="hero-name">
+    <canvas class="hero-canvas" id="circuit" aria-hidden="true"></canvas>
+    <div class="hero-fade" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="notice" id="notice" hidden></p>
+        <div class="chips-row">
+          <p class="status"><span class="led" aria-hidden="true"></span><span id="status-text"></span></p>
+          <p class="status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5A7 7 0 0 1 19 9.5C19 14.7 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.4" fill="currentColor"/></svg><span id="local-text"></span></p>
+        </div>
+        <p class="hello">Olá, eu sou</p>
+        <h1 class="name" id="hero-name"></h1>
+        <p class="role">
+          <span class="sr-only" id="roles-sr"></span>
+          <span aria-hidden="true"><span class="role-pre">&gt;</span><span id="role-text"></span><span class="caret"></span></span>
+        </p>
+        <p class="bio" id="hero-bio"></p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projetos">Ver projetos <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" id="open-terminal" href="#terminal">Abrir terminal <kbd aria-hidden="true">&gt;_</kbd></a>
+          <a class="btn btn-ghost" id="cv-hero" href="#curriculo" download>Currículo <span aria-hidden="true">↓</span></a>
+        </div>
+        <ul class="socials" id="hero-socials"></ul>
+      </div>
+
+      <figure class="stack-card glow" aria-label="Como uma aplicação web funciona: interface, API e banco de dados">
+        <div class="win-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="win-title" id="win-title"></span>
+          <span class="win-live"><span class="led" aria-hidden="true"></span>ao vivo</span>
+        </div>
+        <div class="flow" id="flow"></div>
+        <ol class="log" id="log" aria-hidden="true"></ol>
+        <figcaption class="win-foot"><span id="win-stack"></span><span>online há <span class="uptime" id="uptime">00:00:00</span></span></figcaption>
+      </figure>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee-a"></div>
+      <div class="marquee-track rev" id="marquee-b"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre" aria-labelledby="sobre-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/sobre</span>
+        <h2 id="sobre-t">Da interface ao banco de dados</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text" id="about-text"></div>
+        <div class="about-side">
+          <dl class="facts" id="facts"></dl>
+          <div class="callout glow" id="callout"></div>
+        </div>
+      </div>
+      <dl class="stats" id="stats"></dl>
+    </div>
+  </section>
+
+  <section class="section" id="terminal" aria-labelledby="term-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/terminal</span>
+        <h2 id="term-t">Explore pelo terminal</h2>
+        <p class="lead">Digite um comando ou toque numa sugestão. Comece com <code>help</code>. Dá para usar Tab para completar e as setas para o histórico.</p>
+      </div>
+      <div class="shell glow" id="shell">
+        <div class="win-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="win-title" id="shell-title"></span>
+          <span class="win-live">bash</span>
+        </div>
+        <div class="shell-body" id="shell-out" role="log" aria-live="polite" aria-label="Saída do terminal"></div>
+        <form class="shell-input" id="shell-form" autocomplete="off">
+          <label for="shell-cmd"><span class="u t-user" id="shell-user"></span><span class="t-path">~</span>$</label>
+          <input id="shell-cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="send" placeholder="digite help e aperte Enter">
+        </form>
+        <div class="shell-hints" id="shell-hints" aria-label="Sugestões de comandos"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="habilidades" aria-labelledby="hab-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/habilidades</span>
+        <h2 id="hab-t">O que eu sei fazer</h2>
+        <p class="lead">As tecnologias que uso, separadas por área, com exemplos do que já fiz com cada uma.</p>
+      </div>
+      <div class="bento" id="bento"></div>
+    </div>
+  </section>
+
+  <section class="section" id="infra" aria-labelledby="infra-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/infra</span>
+        <h2 id="infra-t">Do cabo ao código</h2>
+        <p class="lead" id="infra-lead"></p>
+      </div>
+      <div class="infra-grid">
+        <figure class="net-card glow">
+          <div class="win-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="win-title">rede.svg · topologia de exemplo</span>
+            <span class="win-live"><span class="led" aria-hidden="true"></span>tráfego</span>
+          </div>
+          <div class="net-scroll">
+            <svg id="net" viewBox="0 0 508 350" role="img" aria-label="Rede de exemplo: internet e Microsoft 365, firewall, switch, servidor Active Directory, duas estações, notebook e impressora">
+              <path id="l-inet-fw" class="lk" d="M200 66 V110"/>
+              <path id="l-fw-sw" class="lk" d="M200 154 V198"/>
+              <path id="l-sw-ad" class="lk" d="M260 220 H370"/>
+              <path id="l-inet-m365" class="lk cloud" d="M260 44 H370"/>
+              <path id="l-sw-pc1" class="lk" d="M200 242 C200 266 70 264 70 288"/>
+              <path id="l-sw-pc2" class="lk" d="M200 242 C200 266 190 264 190 288"/>
+              <path id="l-sw-nb" class="lk" d="M200 242 C200 266 310 264 310 288"/>
+              <path id="l-sw-pr" class="lk" d="M200 242 C200 266 430 264 430 288"/>
+
+              <rect class="nd" x="140" y="22" width="120" height="44" rx="10"/>
+              <text class="nt" x="200" y="42" text-anchor="middle">Internet</text>
+              <text class="ns" x="200" y="56" text-anchor="middle">wan</text>
+              <rect class="nd" x="370" y="22" width="120" height="44" rx="10"/>
+              <text class="nt" x="430" y="42" text-anchor="middle">Microsoft 365</text>
+              <text class="ns" x="430" y="56" text-anchor="middle">nuvem</text>
+              <rect class="nd" x="140" y="110" width="120" height="44" rx="10"/>
+              <text class="nt" x="200" y="130" text-anchor="middle">Firewall</text>
+              <text class="ns" x="200" y="144" text-anchor="middle">roteador</text>
+              <rect class="nd core" x="140" y="198" width="120" height="44" rx="10"/>
+              <text class="nt" x="200" y="218" text-anchor="middle">Switch</text>
+              <text class="ns" x="200" y="232" text-anchor="middle">lan</text>
+              <rect class="nd" x="370" y="198" width="120" height="44" rx="10"/>
+              <text class="nt" x="430" y="218" text-anchor="middle">Servidor AD</text>
+              <text class="ns" x="430" y="232" text-anchor="middle">usuários</text>
+              <rect class="nd" x="18" y="288" width="104" height="44" rx="10"/>
+              <text class="nt" x="70" y="308" text-anchor="middle">Estação 01</text>
+              <text class="ns" x="70" y="322" text-anchor="middle">desktop</text>
+              <rect class="nd" x="138" y="288" width="104" height="44" rx="10"/>
+              <text class="nt" x="190" y="308" text-anchor="middle">Estação 02</text>
+              <text class="ns" x="190" y="322" text-anchor="middle">desktop</text>
+              <rect class="nd" x="258" y="288" width="104" height="44" rx="10"/>
+              <text class="nt" x="310" y="308" text-anchor="middle">Notebook</text>
+              <text class="ns" x="310" y="322" text-anchor="middle">wi-fi</text>
+              <rect class="nd" x="378" y="288" width="104" height="44" rx="10"/>
+              <text class="nt" x="430" y="308" text-anchor="middle">Impressora</text>
+              <text class="ns" x="430" y="322" text-anchor="middle">rede</text>
+
+              <circle class="pk pk-a" r="4"><animateMotion dur="1.4s" begin="0s" repeatCount="indefinite"><mpath href="#l-inet-fw"/></animateMotion></circle>
+              <circle class="pk pk-b" r="4"><animateMotion dur="1.4s" begin="-0.7s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#l-inet-fw"/></animateMotion></circle>
+              <circle class="pk pk-a" r="4"><animateMotion dur="1.4s" begin="-0.35s" repeatCount="indefinite"><mpath href="#l-fw-sw"/></animateMotion></circle>
+              <circle class="pk pk-b" r="4"><animateMotion dur="1.4s" begin="-1.05s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#l-fw-sw"/></animateMotion></circle>
+              <circle class="pk pk-c" r="4"><animateMotion dur="2s" begin="-0.4s" repeatCount="indefinite"><mpath href="#l-sw-ad"/></animateMotion></circle>
+              <circle class="pk pk-b" r="4"><animateMotion dur="2s" begin="-1.4s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#l-sw-ad"/></animateMotion></circle>
+              <circle class="pk pk-c" r="4"><animateMotion dur="2.4s" begin="-1.2s" repeatCount="indefinite"><mpath href="#l-inet-m365"/></animateMotion></circle>
+              <circle class="pk pk-a" r="4"><animateMotion dur="1.8s" begin="-0.2s" repeatCount="indefinite"><mpath href="#l-sw-pc1"/></animateMotion></circle>
+              <circle class="pk pk-a" r="4"><animateMotion dur="1.6s" begin="-0.9s" repeatCount="indefinite"><mpath href="#l-sw-pc2"/></animateMotion></circle>
+              <circle class="pk pk-b" r="4"><animateMotion dur="1.9s" begin="-0.5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#l-sw-nb"/></animateMotion></circle>
+              <circle class="pk pk-c" r="4"><animateMotion dur="2.2s" begin="-1.6s" repeatCount="indefinite"><mpath href="#l-sw-pr"/></animateMotion></circle>
+            </svg>
+          </div>
+          <figcaption class="win-foot"><span>pontos animados: pacotes trafegando na rede</span><span>exemplo ilustrativo</span></figcaption>
+        </figure>
+        <div class="infra-side">
+          <ul class="checks" id="checks"></ul>
+          <div class="callout glow" id="infra-callout"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projetos" aria-labelledby="proj-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/projetos</span>
+        <h2 id="proj-t">Projetos que desenvolvi</h2>
+        <p class="lead">Sites no ar feitos para clientes, projetos da faculdade com código aberto e todos os meus repositórios públicos.</p>
+      </div>
+
+      <h3 class="sub">Sites para clientes <span class="count" id="count-cli"></span></h3>
+      <div class="feat-grid" id="feat"></div>
+      <div class="cli-grid" id="cli"></div>
+
+      <div class="block-gap">
+        <h3 class="sub">Projetos acadêmicos <span class="count" id="count-acad"></span></h3>
+        <div class="acad-grid" id="acad"></div>
+        <p class="code-intro" id="code-intro"></p>
+        <div class="code-card glow">
+          <div class="code-tabs" role="tablist" aria-label="Arquivos" id="code-tabs"></div>
+          <pre class="code" id="code" tabindex="0"></pre>
+        </div>
+      </div>
+
+      <div class="block-gap">
+        <div class="repos-head">
+          <h3 class="sub">Todos os repositórios públicos <span class="count" id="count-repos"></span></h3>
+          <span class="src" id="repo-src"></span>
+          <a class="gh" id="gh-link" href="#" target="_blank" rel="noopener">Ver no GitHub ↗</a>
+        </div>
+        <div class="langbar" id="langbar" aria-hidden="true"></div>
+        <ul class="lang-legend" id="lang-legend"></ul>
+        <div class="filters" id="filters" role="group" aria-label="Filtrar por linguagem"></div>
+        <div class="repo-grid" id="repos"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trajetoria" aria-labelledby="traj-t">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="route"><b>GET</b>/trajetoria</span>
+        <h2 id="traj-t">Formação e experiência</h2>
+      </div>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section class="section section-cv" id="curriculo" aria-labelledby="cv-t">
+    <div class="wrap">
+      <div class="cv">
+        <span class="cv-file" aria-hidden="true">PDF</span>
+        <div class="cv-info">
+          <span class="route" style="align-self:flex-start;margin-bottom:6px"><b>GET</b>/curriculo.pdf</span>
+          <h2 class="cv-title" id="cv-t">Currículo</h2>
+          <span class="cv-meta" id="cv-meta"></span>
+        </div>
+        <div class="cv-actions">
+          <a class="btn btn-primary" id="cv-download" href="#" download>Baixar currículo <span aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" id="cv-linkedin" href="#" target="_blank" rel="noopener">Ver no LinkedIn ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contato" aria-labelledby="cont-t">
+    <div class="wrap">
+      <div class="contact">
+        <div class="sec-head">
+          <span class="route post"><b>POST</b>/contato</span>
+          <h2 id="cont-t">Vamos conversar?</h2>
+          <p class="lead" id="contact-text"></p>
+        </div>
+        <div class="contact-box">
+          <span class="label">E-mail</span>
+          <div class="email-box">
+            <a class="email" id="email-link" href="#"></a>
+            <button class="btn btn-ghost btn-sm" id="copy-btn" type="button">Copiar</button>
+          </div>
+          <p class="copy-msg" id="copy-msg" role="status"></p>
+          <div class="channels" id="channels"></div>
+          <div class="quick">
+            <label class="label" for="quick-msg">Mensagem rápida pelo WhatsApp</label>
+            <textarea id="quick-msg" placeholder="Olá, Gabriel! Vi seu portfólio e gostaria de conversar sobre..."></textarea>
+            <a class="btn btn-primary" id="quick-send" href="#" target="_blank" rel="noopener">Abrir no WhatsApp ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>© <span id="foot-year">2026</span> <span id="foot-name"></span> · Feito com HTML, CSS e JavaScript, sem frameworks</span>
+    <a href="#inicio">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Voltar ao topo" hidden>↑</button>
+
+<script>
+/* =================================================================
+   PERFIL: edite só este bloco para trocar os textos do site.
+   Trechos entre [[ ]] aparecem destacados no site até você preenchê-los.
+   ================================================================= */
+const PERFIL = {
+  nome: "Gabriel Rangel",
+  iniciais: "GR",
+  usuario: "gabriel", // nome que aparece no terminal
+  local: "Porto Alegre, RS",
+  status: "Disponível para oportunidades",
+  funcoes: ["Desenvolvedor Web Júnior", "Sites para clientes", "Front-end e back-end", "JavaScript · Node.js · MySQL"],
+  subtitulo: "Formado em Análise e Desenvolvimento de Sistemas, com conhecimentos em JavaScript, Node.js e MySQL.",
+  // Caminho de uma requisição na stack que você usa (janela do início)
+  fluxo: [
+    ["cliente", "Interface", "HTML · CSS · JS"],
+    ["servidor", "API REST", "Node.js · Express"],
+    ["dados", "Banco", "MySQL"]
+  ],
+  sobre: {
+    paragrafos: [
+      "Sou tecnólogo em Análise e Desenvolvimento de Sistemas pela FADERGS, com curso concluído em julho de 2026. Gosto de trabalhar nas duas pontas de uma aplicação web: a interface que a pessoa usa e o servidor e o banco de dados que ficam por trás dela.",
+      "Já entreguei sites para clientes como GOBRS, Raasch e Mestre das Tintas, com HTML, CSS, JavaScript, React e Next.js. Também desenvolvi APIs REST com Node.js, Express, Sequelize e MySQL e automatizei testes com Java, Selenium e JUnit.",
+      "Nos 2 anos de estágio em TI na FuelTech, trabalhei com suporte a usuários, hardware, redes, Microsoft 365 e Active Directory. Como soldado do Exército Brasileiro, desenvolvi disciplina, responsabilidade e trabalho em equipe."
+    ],
+    fatos: [
+      ["Formação", "ADS · FADERGS · 2026"],
+      ["Local", "Porto Alegre, RS"],
+      ["Stack principal", "JavaScript, Node.js, MySQL"],
+      ["Diferencial", "Sites, APIs, testes e infra"]
+    ],
+    destaque: {
+      rotulo: "Exército Brasileiro · 1 ano e 4 meses",
+      texto: "Disciplina, responsabilidade, organização e trabalho em equipe, aplicados ao desenvolvimento de software.",
+      tags: ["Disciplina", "Responsabilidade", "Organização", "Trabalho em equipe"]
+    }
+  },
+  // {sites} e {tecnologias} são contados automaticamente
+  numeros: [
+    ["2026", "formado em ADS na FADERGS"],
+    ["{sites}", "sites no ar feitos para clientes"],
+    ["{tecnologias}", "tecnologias e ferramentas que uso"],
+    ["2", "anos de TI na FuelTech"]
+  ],
+  // Linhas do comando "neofetch" no terminal
+  neofetch: [
+    ["Cargo", "Desenvolvedor Web Júnior"],
+    ["Formação", "ADS · FADERGS (2026)"],
+    ["Local", "Porto Alegre, RS"],
+    ["Stack", "JavaScript · Node.js · MySQL"],
+    ["Front", "React · Next.js · Tailwind CSS · GSAP"],
+    ["Testes", "Java · Selenium · JUnit · TestNG"],
+    ["Infra", "Hardware · Redes · AD · Microsoft 365"],
+    ["Experiência", "2 anos no TI da FuelTech"],
+    ["Status", "disponível para oportunidades"]
+  ],
+  habilidades: [
+    {
+      area: "Front-end", icone: "</>", largo: true,
+      tecnologias: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Framer Motion", "GSAP"],
+      exemplos: ["Sites responsivos e mobile-first para clientes", "Interfaces em React e Next.js com TypeScript e Tailwind CSS", "Animações com Framer Motion e GSAP"]
+    },
+    {
+      area: "Back-end", icone: "{ }",
+      tecnologias: ["Node.js", "Express", "PHP", "Sequelize"],
+      exemplos: ["APIs REST com Node.js e Express", "Modelos e relacionamentos com Sequelize", "Validação de dados e respostas HTTP (201, 400, 500)"]
+    },
+    {
+      area: "Banco de dados", icone: "SQL",
+      tecnologias: ["SQL", "MySQL"],
+      exemplos: ["Modelagem de tabelas e chaves estrangeiras", "Consultas e relatórios", "Integração do MySQL com APIs em Node.js"]
+    },
+    {
+      area: "Ferramentas", icone: "git",
+      tecnologias: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Vercel"],
+      exemplos: ["Versionamento com Git e GitHub", "Deploy de sites na Vercel e no GitHub Pages"]
+    },
+    {
+      area: "Qualidade", icone: "✓",
+      tecnologias: ["Java", "JUnit", "Selenium", "TestNG"],
+      exemplos: ["Testes automatizados de interface com Selenium", "Cenários de autenticação, cadastros e validações", "Testes em Java com JUnit e TestNG"]
+    },
+    {
+      area: "Suporte e infraestrutura", icone: "TI", largo: "linha",
+      tecnologias: ["Hardware", "Redes", "Microsoft 365", "Active Directory"],
+      exemplos: ["Suporte técnico a usuários e atendimento de chamados", "Instalação, configuração e manutenção de computadores", "Apoio em redes e inventário de equipamentos"]
+    }
+  ],
+  infra: {
+    texto: "Nos 2 anos de estágio em TI na FuelTech, eu cuidava da base que mantém uma empresa funcionando: usuários, computadores e rede.",
+    itens: [
+      "Suporte técnico N1 e N2",
+      "Atendimento e resolução de chamados",
+      "Instalação e configuração de computadores",
+      "Manutenção de hardware e software",
+      "Apoio na infraestrutura de redes",
+      "Inventário de equipamentos",
+      "Microsoft 365",
+      "Active Directory"
+    ],
+    rotulo: "FuelTech · Estágio em TI",
+    destaque: "2 anos de suporte e infraestrutura de TI"
+  },
+  trajetoria: [
+    {
+      quando: "2024 – 2026",
+      tipo: "Graduação",
+      titulo: "Análise e Desenvolvimento de Sistemas",
+      local: "FADERGS",
+      texto: "Tecnólogo, curso concluído em julho de 2026, com colação de grau em setembro de 2026.",
+      tags: ["Programação", "Banco de dados", "Testes"]
+    },
+    {
+      quando: "Freelance",
+      tipo: "Autônomo",
+      titulo: "Sites para clientes",
+      local: "GOBRS, Raasch, Mestre das Tintas e outros",
+      texto: "Sites para GOBRS, Raasch, Mestre das Tintas, Heloisa Fit, Use Afrodite Pratas e Piuco Podas, do layout à publicação na Vercel ou no GitHub Pages.",
+      tags: ["Next.js", "React", "JavaScript", "GSAP", "Vercel"]
+    },
+    {
+      quando: "2025 – 2026",
+      duracao: "2 anos",
+      tipo: "Estágio",
+      titulo: "Estágio em TI",
+      local: "FuelTech",
+      texto: "Suporte técnico a usuários e atendimento de chamados, instalação e configuração de computadores, manutenção de hardware e software, apoio em redes e inventário de equipamentos.",
+      tags: ["Suporte técnico", "Hardware", "Redes", "Microsoft 365", "Active Directory"]
+    },
+    {
+      quando: "[[mês/ano]]",
+      duracao: "1 mês",
+      tipo: "Conteúdo digital",
+      titulo: "Conteúdo digital e apoio comercial",
+      local: "RAASCH",
+      texto: "Criação de imagens, vídeos e textos comerciais com ferramentas de inteligência artificial, organização do catálogo no WhatsApp Business e apoio comercial.",
+      tags: ["Inteligência artificial", "Imagens e vídeos", "WhatsApp Business"]
+    },
+    {
+      quando: "mar/2023 – jun/2024",
+      duracao: "1 ano e 4 meses",
+      tipo: "Experiência",
+      titulo: "Soldado",
+      local: "Exército Brasileiro",
+      texto: "Rotina de disciplina, responsabilidade, organização e trabalho em equipe.",
+      tags: ["Disciplina", "Responsabilidade", "Trabalho em equipe"]
+    }
+  ],
+  // grupo: "destaque" (cartão grande), "cliente" ou "academico". imagem: print do site. terminal: linhas para projetos sem print.
+  projetos: [
+    {
+      grupo: "destaque", tipo: "cliente", nome: "GOBRS", categoria: "Landing page", imagem: "img/gobrs.jpg",
+      texto: "Landing page do GOBRS, grupo voluntário de busca, resgate e salvamento do Rio Grande do Sul.",
+      papel: "Desenvolvi o site completo, mobile-first, com animações e seções de atuação, galeria, recrutamento e doações.",
+      tecnologias: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      site: "https://site-gobrs.vercel.app", codigo: "https://github.com/Rangel202/site-gobrs"
+    },
+    {
+      grupo: "destaque", tipo: "cliente", nome: "Raasch", categoria: "Site e catálogo", imagem: "img/raasch.jpg",
+      texto: "Site institucional e catálogo da Raasch, de joias, iluminação e decoração, em Porto Alegre.",
+      papel: "Desenvolvi o site institucional e o catálogo com Next.js, React, TypeScript e Tailwind CSS.",
+      tecnologias: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+      site: "https://site-raasch.vercel.app", codigo: "https://github.com/Rangel202/site-raasch"
+    },
+    {
+      grupo: "cliente", tipo: "cliente", nome: "Mestre das Tintas", categoria: "Landing page", imagem: "img/mestre.jpg",
+      texto: "Site de pintura residencial e comercial, com pedido de orçamento pelo WhatsApp.",
+      papel: "Site feito para cliente, com animações em GSAP.",
+      tecnologias: ["HTML", "CSS", "JavaScript", "GSAP"],
+      site: "https://mestre-das-tintas-mu.vercel.app", codigo: "https://github.com/Rangel202/mestre-das-tintas"
+    },
+    {
+      grupo: "cliente", tipo: "cliente", nome: "Heloisa Fit", categoria: "Landing page", imagem: "img/heloisa.jpg",
+      texto: "Site de personal trainer com serviços, planos e contato pelo WhatsApp.",
+      papel: "Desenvolvi o site responsivo do zero e publiquei na Vercel.",
+      tecnologias: ["HTML", "CSS", "JavaScript"],
+      site: "https://heloisa-fit.vercel.app", codigo: "https://github.com/Rangel202/heloisa-fit"
+    },
+    {
+      grupo: "cliente", tipo: "cliente", nome: "Use Afrodite Pratas", categoria: "Catálogo online", imagem: "img/afrodite.jpg",
+      texto: "Catálogo de joias em prata 925 com busca, filtros, carrinho e pedido pelo WhatsApp.",
+      papel: "Interface mobile-first em JavaScript puro, com envio do resumo do pedido pelo WhatsApp.",
+      tecnologias: ["HTML", "CSS", "JavaScript"],
+      site: "https://use-afrodite-pratas.vercel.app", codigo: "https://github.com/Rangel202/use-afrodite-pratas"
+    },
+    {
+      grupo: "cliente", tipo: "cliente", nome: "Piuco Podas", categoria: "Landing page", imagem: "img/piuco.jpg",
+      texto: "Site de serviços de poda de árvores com galeria de trabalhos, depoimentos e contato pelo WhatsApp.",
+      papel: "Página única e responsiva, com SEO básico e animações conforme a rolagem.",
+      tecnologias: ["HTML", "CSS", "JavaScript"],
+      // Quando o GitHub Pages do repositório for reativado, coloque aqui: "https://rangel202.github.io/Piuco-Podas/"
+      site: "", codigo: "https://github.com/Rangel202/Piuco-Podas"
+    },
+    {
+      grupo: "academico", tipo: "academico", nome: "Gestão de atendimentos", categoria: "Sistema web",
+      terminal: [["// sistema de gestão de atendimentos", "dim"], ["", ""], ["▸ API REST em Node.js + Express", "k"], ["▸ Sequelize + MySQL", "k"], ["▸ usuários, perfis e relatórios", "k"], ["▸ front-end em HTML, CSS e JS", "k"]],
+      texto: "Sistema de gestão de atendimentos com API REST, autenticação, perfis, relatórios e front-end próprio.",
+      papel: "API em Node.js e Express com Sequelize e MySQL, e telas em HTML, CSS e JavaScript.",
+      tecnologias: ["Node.js", "Express", "Sequelize", "MySQL", "JavaScript"],
+      site: "", codigo: "https://github.com/Rangel202/Gestao_atendimentos"
+    },
+    {
+      grupo: "academico", tipo: "academico", nome: "API REST de pedidos", categoria: "Back-end",
+      terminal: [["GET /api  200 OK", "ok"], ["", ""], ["{", ""], ["  \"recursos\": [\"cidades\",", "str"], ["    \"categorias\", \"clientes\",", "str"], ["    \"produtos\", \"pedidos\"]", "str"], ["}", ""]],
+      texto: "API REST para gerenciar cidades, categorias, clientes, produtos e pedidos.",
+      papel: "Cadastro, consulta, atualização e exclusão de registros (CRUD), com os dados salvos em MySQL.",
+      tecnologias: ["Node.js", "Express", "MySQL"],
+      site: "", codigo: "https://github.com/Rangel202/api_sdm_25_2"
+    },
+    {
+      grupo: "academico", tipo: "academico", nome: "Testes automatizados FGTAS", categoria: "Testes",
+      terminal: [["// cenários documentados", "dim"], ["", ""], ["▸ autenticação", "k"], ["▸ cadastro de atendimentos", "k"], ["▸ validação de CPF e CNPJ", "k"], ["", ""], ["Java · Selenium · JUnit · TestNG", "dim"]],
+      texto: "Automação dos testes do sistema de gestão de atendimentos da FGTAS, em equipe.",
+      papel: "Colaboração no projeto de testes. [[Detalhe quais testes ou partes você implementou.]]",
+      tecnologias: ["Java", "Selenium", "JUnit", "TestNG", "IntelliJ IDEA"],
+      site: "", codigo: "https://github.com/Rangel202/gestao_atendimento_FGTAS"
+    }
+  ],
+  // Lista salva dos repositórios. No site publicado, ela é atualizada sozinha pelo GitHub.
+  github: {
+    usuario: "Rangel202",
+    salvoEm: "01/11/2026",
+    repos: [
+      { nome: "use-afrodite-pratas", descricao: "Catálogo online de joias em prata 925 com filtro, busca, carrinho e pedido pelo WhatsApp. Feito para cliente, em HTML, CSS e JavaScript puro.", linguagem: "CSS", site: "https://use-afrodite-pratas.vercel.app", topicos: ["ecommerce", "freelance", "mobile-first", "whatsapp"], fork: false, estrelas: 0, atualizado: "2026-10-29" },
+      { nome: "heloisa-fit", descricao: "Site de personal trainer com serviços, planos e contato pelo WhatsApp. Feito para cliente em HTML, CSS e JavaScript.", linguagem: "CSS", site: "https://heloisa-fit.vercel.app", topicos: ["freelance", "landing-page", "responsive-design"], fork: false, estrelas: 0, atualizado: "2026-10-29" },
+      { nome: "Piuco-Podas", descricao: "Site de serviços de poda de árvores com serviços, galeria, depoimentos e contato pelo WhatsApp. Feito para cliente em HTML, CSS e JavaScript.", linguagem: "CSS", site: "", topicos: ["freelance", "landing-page", "responsive-design"], fork: false, estrelas: 0, atualizado: "2026-10-29" },
+      { nome: "mestre-das-tintas", descricao: "Site do Mestre das Tintas, pintura residencial e comercial. Feito para cliente em HTML, CSS, JavaScript e GSAP.", linguagem: "HTML", site: "https://mestre-das-tintas-mu.vercel.app", topicos: [], fork: false, estrelas: 0, atualizado: "2026-10-24" },
+      { nome: "site-raasch", descricao: "Site institucional e catálogo da Raasch (joias, iluminação e decoração). Feito com Next.js, React, TypeScript e Tailwind CSS.", linguagem: "TypeScript", site: "https://site-raasch.vercel.app", topicos: [], fork: false, estrelas: 0, atualizado: "2026-09-04" },
+      { nome: "site-gobrs", descricao: "Landing page do GOBRS, grupo de busca, resgate e salvamento. Feito para cliente com Next.js, React, TypeScript, Tailwind CSS e Framer Motion.", linguagem: "TypeScript", site: "https://site-gobrs.vercel.app", topicos: ["nextjs", "react", "tailwindcss", "typescript"], fork: false, estrelas: 0, atualizado: "2026-07-29" },
+      { nome: "Gestao_atendimentos", descricao: "Sistema de gestão de atendimentos: API REST em Node.js/Express com Sequelize e MySQL e front-end em HTML, CSS e JavaScript. Projeto acadêmico.", linguagem: "JavaScript", site: "", topicos: ["express", "nodejs", "rest-api", "sequelize"], fork: false, estrelas: 0, atualizado: "2025-12-05" },
+      { nome: "api_sdm_25_2", descricao: "API REST acadêmica em Node.js, Express e MySQL com cidades, categorias, clientes, produtos e pedidos.", linguagem: "JavaScript", site: "", topicos: ["express", "mysql", "nodejs", "rest-api"], fork: false, estrelas: 0, atualizado: "2025-11-05" },
+      { nome: "gestao_atendimento_FGTAS", descricao: "Automação de testes da aplicação Gestão de Atendimentos FGTAS com Java, Selenium, JUnit e TestNG. Projeto acadêmico em equipe.", linguagem: "HTML", site: "", topicos: ["java", "selenium", "junit", "testng"], fork: true, estrelas: 1, atualizado: "2025-06-17" }
+    ]
+  },
+  // Trechos reais do repositório Gestao_atendimentos
+  codigo: {
+    repo: "Rangel202/Gestao_atendimentos",
+    arquivos: [
+      {
+        aba: "rotasAtendimento.js",
+        caminho: "src/routes/rotasAtendimento.js",
+        linhas: [
+          "import { Router } from 'express';",
+          "import { criarAtendimento, listarAtendimentos } from '../controllers/atendimentoController.js';",
+          "",
+          "const router = Router();",
+          "",
+          "router.route('/atendimentos')",
+          "    .get(listarAtendimentos)",
+          "    .post(criarAtendimento);",
+          "",
+          "export default router;"
+        ]
+      },
+      {
+        aba: "listarAtendimentos()",
+        caminho: "src/controllers/atendimentoController.js",
+        linhas: [
+          "export const listarAtendimentos = async (req, res) => {",
+          "    try {",
+          "        const attendances = await Atendimento.findAll({",
+          "            include: [",
+          "                { model: Usuario, as: 'user', attributes: ['name', 'email'] },",
+          "                { model: FormularioAtendimento, as: 'attendanceForm', attributes: ['name'] },",
+          "                { model: TipoPublico, as: 'publicType', attributes: ['name'] },",
+          "                { model: TipoAtendimento, as: 'attendanceType', attributes: ['name'] },",
+          "            ],",
+          "            order: [['createdAt', 'DESC']]",
+          "        });",
+          "        return res.status(200).json(attendances);",
+          "    } catch (error) {",
+          "        console.error('Erro ao listar atendimentos:', error);",
+          "        return res.status(500).json({ message: 'Erro interno do servidor.' });",
+          "    }",
+          "};"
+        ]
+      },
+      {
+        aba: "criarAtendimento()",
+        caminho: "src/controllers/atendimentoController.js",
+        linhas: [
+          "export const criarAtendimento = async (req, res) => {",
+          "    try {",
+          "        const { summary, user_id, attendance_type_id, ...rest } = req.body;",
+          "",
+          "        const requiredFields = ['user_id', 'attendance_form_id', 'public_type_id', 'attendance_type_id', 'summary'];",
+          "        for (const field of requiredFields) {",
+          "            if (!req.body[field]) {",
+          "                return res.status(400).json({ message: `O campo '${field}' é obrigatório.` });",
+          "            }",
+          "        }",
+          "",
+          "        const fieldsConfig = await CampoTipoAtendimento.findAll({",
+          "            where: { attendance_type_id: attendance_type_id, is_required: true },",
+          "            attributes: ['field_name', 'label']",
+          "        });",
+          "",
+          "        const dynamicData = rest.dynamic_data || {};",
+          "",
+          "        for (const field of fieldsConfig) {",
+          "            if (!dynamicData[field.field_name]) {",
+          "                return res.status(400).json({",
+          "                    message: `O campo dinâmico obrigatório '${field.label}' (${field.field_name}) não foi preenchido.`",
+          "                });",
+          "            }",
+          "        }",
+          "",
+          "        const newAttendance = await Atendimento.create(req.body);",
+          "",
+          "        return res.status(201).json(newAttendance);",
+          "",
+          "    } catch (error) {",
+          "        console.error('Erro ao registrar atendimento:', error);",
+          "        return res.status(500).json({ message: 'Erro interno do servidor. Verifique se todas as chaves estrangeiras (IDs) existem.' });",
+          "    }",
+          "};"
+        ]
+      }
+    ]
+  },
+  curriculo: {
+    arquivo: "curriculo-gabriel-rangel.pdf", // coloque o PDF na mesma pasta do site
+    atualizado: "07/2026"
+  },
+  contato: {
+    texto: "Estou em busca de oportunidades como desenvolvedor web júnior e também faço sites sob encomenda. Fale comigo por qualquer um destes canais.",
+    email: "gabrielpuchivailo@icloud.com",
+    linkedin: "https://www.linkedin.com/in/gabriel-puchivailo-rangel-7a9675304/",
+    github: "https://github.com/Rangel202",
+    whatsapp: "+55 (51) 99120-0031"
+  }
+};
+
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const root = document.documentElement;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = matchMedia("(pointer: fine)").matches;
+  const P = PERFIL, C = PERFIL.contato;
+  const ano = new Date().getFullYear();
+
+  function h(tag, props, ...kids) {
+    const el = document.createElement(tag);
+    if (props) {
+      for (const [k, v] of Object.entries(props)) {
+        if (v == null || v === false) continue;
+        if (k === "class") el.className = v;
+        else if (k === "text") el.textContent = v;
+        else if (k === "style") el.style.cssText = v;
+        else el.setAttribute(k, v);
+      }
+    }
+    for (const kid of kids.flat(Infinity)) {
+      if (kid == null || kid === false || kid === "") continue;
+      el.append(kid);
+    }
+    return el;
+  }
+  const svgEl = (inner, cls) => {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 24 24");
+    s.setAttribute("aria-hidden", "true");
+    if (cls) s.setAttribute("class", cls);
+    s.innerHTML = inner;
+    return s;
+  };
+  // Texto com trechos [[a preencher]] destacados
+  const rich = (str) =>
+    String(str ?? "").split(/(\[\[.*?\]\])/).filter(Boolean).map((part) =>
+      part.startsWith("[[") && part.endsWith("]]") ? h("mark", { class: "todo", text: part.slice(2, -2) }) : part);
+  const todo = (text) => h("mark", { class: "todo", text });
+  const limpo = (s) => String(s).replace(/\[\[|\]\]/g, "");
+  const slug = (s) => limpo(s).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const semProtocolo = (url) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+  const outLink = (url, props, ...kids) => h("a", { href: url, target: "_blank", rel: "noopener", ...props }, ...kids);
+  const list = (cls, items) => (items && items.length ? h("ul", { class: cls }, items.map((t) => h("li", null, rich(t)))) : null);
+  const zap = C.whatsapp ? "https://wa.me/" + C.whatsapp.replace(/\D/g, "") : "";
+  const dataBR = (iso) => { const [y, m, d] = String(iso).slice(0, 10).split("-"); return d + "/" + m + "/" + y; };
+
+  // Cores das tecnologias (pontinhos nos chips e nas faixas)
+  const COR = {
+    HTML: "#e34f26", CSS: "#2965f1", JavaScript: "#f7df1e", TypeScript: "#3178c6", React: "#61dafb", "Next.js": "var(--text)",
+    "Tailwind CSS": "#38bdf8", "Framer Motion": "#bb4bff", GSAP: "#88ce02", "Node.js": "#5fa04e", Express: "var(--muted)",
+    PHP: "#777bb4", Sequelize: "#52b0e7", SQL: "#e38c00", MySQL: "#4479a1", Java: "#e76f00", JUnit: "#25a162",
+    Selenium: "#43b02a", TestNG: "#e05252", Git: "#f05032", GitHub: "var(--text)", "VS Code": "#007acc",
+    "IntelliJ IDEA": "#fe315d", Vercel: "var(--text)", Hardware: "#9aa5b1", Redes: "#22b8cf", "Microsoft 365": "#d83b01",
+    "Active Directory": "#0078d4", "API REST": "var(--primary)"
+  };
+  // Cores das linguagens como no GitHub
+  const LING = { CSS: "#663399", HTML: "#e34c26", JavaScript: "#f1e05a", TypeScript: "#3178c6", Java: "#b07219", PHP: "#4f5d95" };
+  const cor = (t) => COR[limpo(t)] || "var(--muted)";
+  const chip = (t) => h("li", null, h("i", { style: "--c:" + cor(t), "aria-hidden": "true" }), rich(t));
+
+  const techs = [...new Set(P.habilidades.flatMap((s) => s.tecnologias.map(limpo)))];
+  const sitesNoAr = P.projetos.filter((p) => p.site).length;
+
+  /* ================= Início ================= */
+  $("logo-mark").textContent = P.iniciais;
+  $("logo-name").textContent = P.nome;
+  $("status-text").textContent = P.status;
+  $("local-text").textContent = P.local;
+  const [primeiro, ...resto] = P.nome.trim().split(/\s+/);
+  $("hero-name").replaceChildren(h("span", { text: primeiro }), resto.length ? h("span", { class: "grad", text: resto.join(" ") }) : "");
+  $("roles-sr").textContent = P.funcoes.join(", ");
+  $("hero-bio").replaceChildren(...rich(P.subtitulo));
+  $("cv-hero").href = P.curriculo.arquivo;
+  $("hero-socials").replaceChildren(
+    ...[["GitHub", C.github], ["LinkedIn", C.linkedin], ["WhatsApp", zap]].map(([nome, url]) =>
+      h("li", null, url ? outLink(url, null, nome, h("span", { "aria-hidden": "true", text: " ↗" })) : todo(nome)))
+  );
+
+  $("win-title").textContent = slug(P.nome) + " / stack";
+  $("win-stack").textContent = P.fluxo.slice(1).map((n) => n[2]).join(" · ");
+  const flow = $("flow");
+  P.fluxo.forEach(([k, titulo, tec], i) => {
+    if (i) {
+      flow.append(h("div", { class: "wire w" + i, "aria-hidden": "true" },
+        h("span", { class: "wire-k", text: i === 1 ? "HTTP" : "SQL" }),
+        h("i", { class: "pkt req" }), h("i", { class: "pkt res" })));
+    }
+    flow.append(h("div", { class: "node n" + (i + 1) },
+      h("span", { class: "node-k", text: k }), h("strong", { text: titulo }), h("small", { text: tec })));
+  });
+
+  const ROTAS = [
+    ["GET", "/api/projetos", 200], ["GET", "/api/habilidades", 200], ["POST", "/api/atendimentos", 201],
+    ["GET", "/api/repositorios", 200], ["GET", "/curriculo.pdf", 200], ["POST", "/api/contato", 201], ["GET", "/api/infra", 200]
+  ];
+  let rota = 0;
+  const log = $("log");
+  const hora = (d) => [d.getHours(), d.getMinutes(), d.getSeconds()].map((n) => String(n).padStart(2, "0")).join(":");
+  const logLine = (d) => {
+    const [m, p, c] = ROTAS[rota++ % ROTAS.length];
+    return h("li", null,
+      h("time", { text: hora(d) }),
+      h("b", { class: "m m-" + m.toLowerCase(), text: m }),
+      h("span", { class: "path", text: p }),
+      h("span", { class: "code-ok", text: String(c) }),
+      h("span", { class: "ms", text: 8 + Math.floor(Math.random() * 56) + "ms" }));
+  };
+  const agora = Date.now();
+  for (let k = 4; k >= 0; k--) log.append(logLine(new Date(agora - k * 1800)));
+  if (!reduceMotion) {
+    setInterval(() => {
+      if (document.hidden) return;
+      log.append(logLine(new Date()));
+      while (log.children.length > 5) log.firstElementChild.remove();
+    }, 1800);
+  }
+  const inicio = Date.now();
+  const pad = (n) => String(n).padStart(2, "0");
+  setInterval(() => {
+    const s = Math.floor((Date.now() - inicio) / 1000);
+    $("uptime").textContent = pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s / 60) % 60) + ":" + pad(s % 60);
+  }, 1000);
+
+  // Duas faixas de tecnologias, em sentidos opostos
+  const metade = Math.ceil(techs.length / 2);
+  [[$("marquee-a"), techs.slice(0, metade)], [$("marquee-b"), techs.slice(metade)]].forEach(([track, lista]) => {
+    for (let copia = 0; copia < 3; copia++) {
+      lista.forEach((t) => track.append(h("span", null, h("i", { style: "--c:" + cor(t) }), t)));
+    }
+  });
+
+  /* ================= Sobre ================= */
+  $("about-text").replaceChildren(...P.sobre.paragrafos.map((p) => h("p", null, rich(p))));
+  $("facts").replaceChildren(
+    ...P.sobre.fatos.map(([k, v]) => h("div", { class: "fact" }, h("dt", { text: k }), h("dd", null, rich(v))))
+  );
+  const dq = P.sobre.destaque;
+  $("callout").replaceChildren(h("span", { class: "callout-k", text: dq.rotulo }), h("p", null, rich(dq.texto)), list("tags", dq.tags));
+  $("stats").replaceChildren(
+    ...P.numeros.map(([n, t]) => {
+      const valor = n.replace("{sites}", String(sitesNoAr)).replace("{tecnologias}", String(techs.length));
+      return h("div", { class: "stat" },
+        h("dt", { "data-count": /^\d+$/.test(valor) ? valor : null, "data-key": n.includes("{sites}") ? "sites" : null, text: valor }),
+        h("dd", { text: t }));
+    })
+  );
+
+  /* ================= Habilidades ================= */
+  $("bento").replaceChildren(
+    ...P.habilidades.map((s) => {
+      const n = s.tecnologias.length;
+      return h("article", { class: "skill glow" + (s.largo === "linha" ? " wide full" : s.largo ? " wide" : "") },
+        h("div", { class: "skill-head" },
+          h("span", { class: "skill-ico", "aria-hidden": "true", text: s.icone }),
+          h("h3", { text: s.area }),
+          h("span", { class: "skill-count", text: n + (n === 1 ? " tecnologia" : " tecnologias") })),
+        h("ul", { class: "tech" }, s.tecnologias.map(chip)),
+        list("examples", s.exemplos));
+    })
+  );
+
+  /* ================= Infra ================= */
+  $("infra-lead").replaceChildren(...rich(P.infra.texto));
+  $("checks").replaceChildren(...P.infra.itens.map((t) => h("li", null, rich(t))));
+  $("infra-callout").replaceChildren(h("span", { class: "callout-k", text: P.infra.rotulo }), h("p", null, rich(P.infra.destaque)));
+
+  /* ================= Projetos ================= */
+  const TIPOS = { cliente: "Cliente", academico: "Acadêmico", pessoal: "Pessoal" };
+  const mock = (p) => {
+    const view = h("div", { class: "mock-view" });
+    if (p.imagem) {
+      view.append(h("img", { src: p.imagem, alt: "Tela do site " + limpo(p.nome), loading: "lazy" }));
+    } else {
+      view.append(h("pre", { class: "term", "aria-hidden": "true" },
+        (p.terminal || []).map(([t, cls]) => [cls ? h("span", { class: cls, text: t }) : t, "\n"])));
+    }
+    const endereco = p.site ? semProtocolo(p.site) : p.codigo ? semProtocolo(p.codigo) : slug(p.nome);
+    return h("div", { class: "mock" },
+      h("div", { class: "mock-win" },
+        h("div", { class: "mock-bar" },
+          h("span", { class: "dots", "aria-hidden": "true" }, h("i"), h("i"), h("i")),
+          h("span", { class: "mock-url", text: endereco })),
+        view));
+  };
+  const card = (p, tamanho) => {
+    const links = [
+      p.site && outLink(p.site, { class: "btn btn-primary btn-sm" }, "Ver site ↗"),
+      p.codigo && outLink(p.codigo, { class: "btn btn-ghost btn-sm" }, "Ver código ↗")
+    ].filter(Boolean);
+    return h("article", { class: "pcard tilt glow " + tamanho, id: "p-" + slug(p.nome) },
+      mock(p),
+      h("div", { class: "pbody" },
+        h("div", { class: "badge-row" },
+          h("span", { class: "badge " + p.tipo, text: TIPOS[p.tipo] || p.tipo }),
+          h("span", { class: "badge", text: p.categoria }),
+          p.site ? h("span", { class: "badge live" }, h("span", { class: "led led-s", "aria-hidden": "true" }), "no ar") : null),
+        h("h4", null, rich(p.nome)),
+        h("p", null, rich(p.texto)),
+        h("p", null, h("b", { text: "Meu papel: " }), rich(p.papel)),
+        h("ul", { class: "tags" }, p.tecnologias.map(chip)),
+        h("div", { class: "plinks" }, links.length ? links : h("span", { class: "off", text: "Links em breve" }))));
+  };
+  const grupo = (g) => P.projetos.filter((p) => p.grupo === g);
+  $("feat").replaceChildren(...grupo("destaque").map((p) => card(p, "big")));
+  $("cli").replaceChildren(...grupo("cliente").map((p) => card(p, "small")));
+  $("acad").replaceChildren(...grupo("academico").map((p) => card(p, "small")));
+  const nCli = grupo("destaque").length + grupo("cliente").length;
+  $("count-cli").textContent = nCli + " projetos · " + sitesNoAr + " no ar";
+  $("count-acad").textContent = grupo("academico").length + " projetos · código aberto";
+
+  // Trecho de código real, com realce de sintaxe
+  const realce = (linha) => {
+    const partes = [];
+    const re = /(\/\/.*$)|('(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`|"(?:[^"\\]|\\.)*")|\b(import|from|export|default|const|let|var|async|await|return|try|catch|for|of|if|else|new|function)\b|\b(\d+)\b|([A-Za-z_$][\w$]*)(?=\s*\()/g;
+    let ultimo = 0, m;
+    while ((m = re.exec(linha))) {
+      if (m.index > ultimo) partes.push(linha.slice(ultimo, m.index));
+      const cls = m[1] ? "c" : m[2] ? "s" : m[3] ? "k" : m[4] ? "n" : "f";
+      partes.push(h("span", { class: "tk-" + cls, text: m[0] }));
+      ultimo = re.lastIndex;
+    }
+    partes.push(linha.slice(ultimo));
+    return partes;
+  };
+  const repoCodigo = "https://github.com/" + P.codigo.repo;
+  $("code-intro").replaceChildren(
+    "Trecho real do repositório ",
+    outLink(repoCodigo, null, P.codigo.repo.split("/")[1]),
+    ": as rotas e o controller de atendimentos, com Express e Sequelize."
+  );
+  const codeEl = $("code");
+  const meta = h("span", { class: "code-meta" });
+  const abrirArquivo = (i) => {
+    const arq = P.codigo.arquivos[i];
+    [...$("code-tabs").querySelectorAll(".code-tab")].forEach((b, k) => b.setAttribute("aria-selected", String(k === i)));
+    codeEl.replaceChildren(...arq.linhas.map((l) => h("span", { class: "line" }, l ? realce(l) : " ")));
+    codeEl.scrollTop = 0;
+    meta.replaceChildren(outLink(repoCodigo + "/blob/HEAD/" + arq.caminho, null, arq.caminho + " ↗"));
+  };
+  $("code-tabs").replaceChildren(
+    ...P.codigo.arquivos.map((a, i) => {
+      const b = h("button", { class: "code-tab", type: "button", role: "tab", text: a.aba });
+      b.addEventListener("click", () => abrirArquivo(i));
+      return b;
+    }),
+    meta
+  );
+  abrirArquivo(0);
+
+  // Repositórios: lista salva agora; no site publicado, atualiza pelo GitHub
+  const ICON_REPO = '<path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v16H7.5A2.5 2.5 0 0 0 5 20.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 20.5A2.5 2.5 0 0 1 7.5 18H20v4H7.5A2.5 2.5 0 0 1 5 20.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>';
+  let reposAtuais = P.github.repos.slice();
+  let filtro = "Todos";
+  $("gh-link").href = "https://github.com/" + P.github.usuario + "?tab=repositories";
+  const repoCard = (r) => h("article", { class: "repo" },
+    h("div", { class: "repo-top" },
+      svgEl(ICON_REPO),
+      outLink("https://github.com/" + P.github.usuario + "/" + r.nome, { class: "repo-name" }, r.nome),
+      r.fork ? h("span", { class: "badge", text: "fork" }) : null),
+    h("p", { class: r.descricao ? null : "vazio" }, r.descricao || "Sem descrição no GitHub ainda."),
+    r.topicos && r.topicos.length ? h("ul", { class: "topics" }, r.topicos.slice(0, 4).map((t) => h("li", { text: t }))) : null,
+    h("div", { class: "repo-foot" },
+      r.linguagem ? h("span", null, h("i", { class: "ldot", style: "--c:" + (LING[r.linguagem] || "var(--muted)") }), r.linguagem) : null,
+      r.estrelas ? h("span", { text: "★ " + r.estrelas }) : null,
+      r.atualizado ? h("span", { text: "atualizado em " + dataBR(r.atualizado) }) : null,
+      r.site ? outLink(r.site, null, "site ↗") : null));
+  const desenharRepos = () => {
+    const lista = reposAtuais.filter((r) => filtro === "Todos" || r.linguagem === filtro);
+    $("repos").replaceChildren(...lista.map(repoCard));
+    [...$("filters").children].forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.l === filtro)));
+  };
+  const renderRepos = (lista, aoVivo) => {
+    reposAtuais = lista;
+    const src = $("repo-src");
+    src.className = "src" + (aoVivo ? " live" : "");
+    src.replaceChildren(aoVivo ? h("span", { class: "led led-s", "aria-hidden": "true" }) : "", aoVivo ? "ao vivo do GitHub" : "lista salva em " + P.github.salvoEm);
+    $("count-repos").textContent = lista.length + " repositórios";
+    const cont = {};
+    lista.forEach((r) => { if (r.linguagem) cont[r.linguagem] = (cont[r.linguagem] || 0) + 1; });
+    const langs = Object.entries(cont).sort((a, b) => b[1] - a[1]);
+    const total = langs.reduce((s, [, n]) => s + n, 0) || 1;
+    $("langbar").replaceChildren(...langs.map(([l, n]) => h("i", { style: "--c:" + (LING[l] || "var(--muted)") + ";flex:" + n + " 1 0", title: l })));
+    $("lang-legend").replaceChildren(...langs.map(([l, n]) =>
+      h("li", null, h("i", { class: "ldot", style: "--c:" + (LING[l] || "var(--muted)") }), h("b", { text: l }), Math.round((n / total) * 100) + "%")));
+    if (filtro !== "Todos" && !cont[filtro]) filtro = "Todos";
+    $("filters").replaceChildren(
+      ...["Todos", ...langs.map(([l]) => l)].map((o) =>
+        h("button", { class: "filter", type: "button", "data-l": o, "aria-pressed": "false" }, o + " · " + (o === "Todos" ? lista.length : cont[o]))));
+    desenharRepos();
+  };
+  $("filters").addEventListener("click", (e) => {
+    const b = e.target.closest(".filter");
+    if (!b) return;
+    filtro = b.dataset.l;
+    desenharRepos();
+  });
+  renderRepos(reposAtuais, false);
+  // Quando o GitHub Pages de um projeto volta a funcionar, o botão "Ver site" aparece sozinho
+  const ativarSites = (lista) => {
+    let mudou = false;
+    for (const p of P.projetos) {
+      if (p.site || !p.codigo) continue;
+      const nome = p.codigo.replace(/\/$/, "").split("/").pop().toLowerCase();
+      const r = lista.find((x) => x.nome.toLowerCase() === nome);
+      if (!r || !r.site) continue;
+      p.site = r.site;
+      mudou = true;
+      const el = document.getElementById("p-" + slug(p.nome));
+      if (!el) continue;
+      el.querySelector(".badge-row").append(h("span", { class: "badge live" }, h("span", { class: "led led-s", "aria-hidden": "true" }), "no ar"));
+      const plinks = el.querySelector(".plinks");
+      const aviso = plinks.querySelector(".off");
+      if (aviso) aviso.remove();
+      plinks.prepend(outLink(p.site, { class: "btn btn-primary btn-sm" }, "Ver site ↗"));
+      const url = el.querySelector(".mock-url");
+      if (url) url.textContent = semProtocolo(p.site);
+    }
+    if (!mudou) return;
+    const noAr = P.projetos.filter((p) => p.site).length;
+    $("count-cli").textContent = nCli + " projetos · " + noAr + " no ar";
+    const st = document.querySelector('[data-key="sites"]');
+    if (st) { st.textContent = String(noAr); st.dataset.count = String(noAr); }
+  };
+  (async () => {
+    try {
+      const ctl = new AbortController();
+      const timer = setTimeout(() => ctl.abort(), 6000);
+      const r = await fetch("https://api.github.com/users/" + P.github.usuario + "/repos?per_page=100&sort=updated", { signal: ctl.signal });
+      clearTimeout(timer);
+      if (!r.ok) return;
+      const dados = await r.json();
+      if (!Array.isArray(dados)) return;
+      const lista = dados
+        .filter((x) => !x.private && x.name.toLowerCase() !== P.github.usuario.toLowerCase())
+        .map((x) => ({
+          nome: x.name, descricao: x.description || "", linguagem: x.language || "",
+          // Endereço do GitHub Pages só aparece se o Pages estiver ligado no repositório
+          site: x.homepage && !(/github\.io/i.test(x.homepage) && !x.has_pages) ? x.homepage : "",
+          topicos: x.topics || [], fork: x.fork, estrelas: x.stargazers_count || 0, atualizado: x.pushed_at || x.updated_at
+        }));
+      if (lista.length) { renderRepos(lista, true); ativarSites(lista); }
+    } catch (e) { /* sem acesso ao GitHub: fica a lista salva */ }
+  })();
+
+  /* ================= Trajetória ================= */
+  $("timeline").replaceChildren(
+    h("span", { class: "tl-progress", id: "tl-progress", "aria-hidden": "true" }),
+    ...P.trajetoria.map((t) =>
+      h("li", { class: "tl-item" },
+        h("div", { class: "tl-when" },
+          h("span", null, rich(t.quando)),
+          t.duracao && h("span", { class: "tl-dur", text: t.duracao }),
+          h("span", { class: "pill", text: t.tipo })),
+        h("div", { class: "tl-body" },
+          h("h3", null, rich(t.titulo)),
+          h("p", { class: "tl-where", text: t.local }),
+          h("p", { class: "tl-text" }, rich(t.texto)),
+          list("tags", t.tags))))
+  );
+
+  /* ================= Currículo e contato ================= */
+  $("cv-meta").replaceChildren(P.curriculo.arquivo + " · atualizado em ", ...rich(P.curriculo.atualizado));
+  $("cv-download").href = P.curriculo.arquivo;
+  if (C.linkedin) $("cv-linkedin").href = C.linkedin;
+  else $("cv-linkedin").hidden = true;
+  $("contact-text").replaceChildren(...rich(C.texto));
+  const emailLink = $("email-link");
+  if (C.email) {
+    emailLink.textContent = C.email;
+    emailLink.href = "mailto:" + C.email;
+  } else {
+    emailLink.replaceWith(h("span", { class: "email" }, todo("seu e-mail profissional")));
+    $("copy-btn").hidden = true;
+  }
+  $("channels").replaceChildren(
+    ...[
+      ["LinkedIn", C.linkedin, C.linkedin && "Gabriel Puchivailo Rangel"],
+      ["GitHub", C.github, C.github && semProtocolo(C.github)],
+      ["WhatsApp", zap, C.whatsapp]
+    ].map(([nome, url, mostrar]) =>
+      url
+        ? outLink(url, { class: "channel" }, h("span", { class: "channel-name", text: nome + " ↗" }), h("span", { class: "channel-val", text: mostrar }))
+        : h("div", { class: "channel" }, h("span", { class: "channel-name", text: nome }), h("span", { class: "channel-val" }, todo("adicione o link"))))
+  );
+  const quickMsg = $("quick-msg"), quickSend = $("quick-send");
+  const atualizarZap = () => {
+    const texto = quickMsg.value.trim() || "Olá, Gabriel! Vi seu portfólio e gostaria de conversar.";
+    quickSend.href = zap + "?text=" + encodeURIComponent(texto);
+  };
+  if (zap) { quickMsg.addEventListener("input", atualizarZap); atualizarZap(); }
+  else quickSend.closest(".quick").hidden = true;
+  $("foot-year").textContent = ano;
+  $("foot-name").textContent = P.nome;
+
+  /* ================= Terminal ================= */
+  const out = $("shell-out"), cmdInput = $("shell-cmd");
+  const host = P.usuario + "@portfolio";
+  $("shell-title").textContent = host + ": ~";
+  $("shell-user").textContent = host + ":";
+  const historico = [];
+  let hIndex = 0;
+  const print = (...kids) => {
+    const ln = h("div", { class: "ln" }, kids);
+    out.append(ln);
+    out.scrollTop = out.scrollHeight;
+    return ln;
+  };
+  const tlink = (href, texto) => outLink(href, { class: "t-link" }, texto);
+  const LOGO = [" ██████╗ ██████╗ ", "██╔════╝ ██╔══██╗", "██║  ███╗██████╔╝", "██║   ██║██╔══██╗", "╚██████╔╝██║  ██║", " ╚═════╝ ╚═╝  ╚═╝"].join("\n");
+  const neofetch = () => {
+    const linhas = [...P.neofetch.slice(0, 7), ["Projetos", P.projetos.length + " · sites no ar: " + P.projetos.filter((p) => p.site).length], ...P.neofetch.slice(7)];
+    const info = h("div", { class: "neo-info" },
+      h("span", null, h("span", { class: "t-user", text: P.usuario }), "@", h("span", { class: "t-user", text: "portfolio" })),
+      h("span", { class: "t-dim", text: "─".repeat(24) }),
+      linhas.map(([k, v]) => h("span", null, h("b", { text: k + ": " }), v)),
+      h("span", { class: "palette", "aria-hidden": "true" },
+        ["var(--primary)", "var(--accent)", "var(--ok)", "#f7df1e", "#e34f26", "#3178c6", "#bb4bff", "var(--muted)"].map((c) => h("i", { style: "--c:" + c }))));
+    print(h("div", { class: "neo" }, h("pre", { class: "neo-logo", "aria-hidden": "true", text: LOGO }), info));
+  };
+  const COMANDOS = {
+    help: ["lista os comandos", () => {
+      print(h("span", { class: "t-dim", text: "Comandos disponíveis:" }));
+      print(h("div", { class: "t-help" }, Object.entries(COMANDOS).map(([k, [d]]) => [h("span", { class: "t-k", text: k }), h("span", { text: d })])));
+    }],
+    whoami: ["quem sou eu", () => print(h("b", { class: "t-k", text: P.nome }), " · " + P.funcoes[0] + " · " + P.local)],
+    neofetch: ["resumo do sistema", neofetch],
+    sobre: ["um pouco sobre mim", () => P.sobre.paragrafos.forEach((p) => print(...rich(p)))],
+    skills: ["tecnologias por área", () => P.habilidades.forEach((s) => print(h("span", { class: "t-k", text: (s.area + ":").padEnd(26, " ") }), s.tecnologias.map(limpo).join(", ")))],
+    projetos: ["projetos com links", () => P.projetos.forEach((p) =>
+      print(h("span", { class: p.site ? "t-ok" : "t-dim", text: p.site ? "● " : "○ " }), h("b", { text: limpo(p.nome) }),
+        h("span", { class: "t-dim", text: "  " + p.categoria + "  " }),
+        p.site ? tlink(p.site, "site") : null, p.site && p.codigo ? "  " : null, p.codigo ? tlink(p.codigo, "código") : null))],
+    repos: ["repositórios públicos", () => {
+      print(h("span", { class: "t-dim", text: reposAtuais.length + " repositórios em github.com/" + P.github.usuario }));
+      reposAtuais.forEach((r) => print(h("span", { class: "t-k", text: "▸ " }), tlink("https://github.com/" + P.github.usuario + "/" + r.nome, r.nome), h("span", { class: "t-dim", text: r.linguagem ? "  " + r.linguagem : "" })));
+    }],
+    infra: ["experiência em TI", () => P.infra.itens.forEach((i) => print(h("span", { class: "t-ok", text: "✓ " }), i))],
+    contato: ["como falar comigo", () => {
+      if (C.email) print(h("span", { class: "t-k", text: "e-mail    " }), h("a", { class: "t-link", href: "mailto:" + C.email, text: C.email }));
+      if (zap) print(h("span", { class: "t-k", text: "whatsapp  " }), tlink(zap, C.whatsapp));
+      if (C.linkedin) print(h("span", { class: "t-k", text: "linkedin  " }), tlink(C.linkedin, "Gabriel Puchivailo Rangel"));
+      if (C.github) print(h("span", { class: "t-k", text: "github    " }), tlink(C.github, semProtocolo(C.github)));
+    }],
+    cv: ["baixar o currículo", () => print("Currículo atualizado em " + limpo(P.curriculo.atualizado) + ": ", h("a", { class: "t-link", href: P.curriculo.arquivo, download: "", text: P.curriculo.arquivo }))],
+    ls: ["lista os arquivos", () => print(h("span", { class: "t-k", text: "projetos/  skills/  " }), "sobre.txt  contato.txt  curriculo.pdf")],
+    cat: ["mostra um arquivo, ex.: cat sobre.txt", (args) => {
+      const arq = args[0] || "";
+      if (arq === "sobre.txt") COMANDOS.sobre[1]();
+      else if (arq === "contato.txt") COMANDOS.contato[1]();
+      else if (arq === "curriculo.pdf") print(h("span", { class: "t-dim", text: "Arquivo PDF. Use o comando " }), h("b", { text: "cv" }), h("span", { class: "t-dim", text: " para baixar." }));
+      else print(h("span", { class: "t-err", text: "cat: " + (arq || "?") + ": arquivo não encontrado." }), " Tente: cat sobre.txt");
+    }],
+    date: ["data e hora agora", () => print(new Date().toLocaleString("pt-BR"))],
+    echo: ["repete um texto", (args) => print(args.join(" "))],
+    sudo: ["tente: sudo contratar", (args) => {
+      if (args.join(" ") === "contratar") {
+        print(h("span", { class: "t-ok", text: "[sudo] acesso concedido. " }), "Vamos conversar: ",
+          zap ? tlink(zap, "WhatsApp") : null, zap && C.email ? " ou " : null,
+          C.email ? h("a", { class: "t-link", href: "mailto:" + C.email, text: C.email }) : null);
+      } else {
+        print(h("span", { class: "t-err", text: "Permissão negada." }), " Tente: sudo contratar");
+      }
+    }],
+    history: ["comandos usados", () => historico.forEach((c, i) => print(h("span", { class: "t-dim", text: String(i + 1).padStart(3, " ") + "  " }), c))],
+    clear: ["limpa a tela", () => out.replaceChildren()]
+  };
+  const executar = (linha) => {
+    const texto = linha.trim();
+    print(h("span", { class: "t-user", text: host }), ":", h("span", { class: "t-path", text: "~" }), "$ ", texto);
+    if (!texto) return;
+    historico.push(texto);
+    hIndex = historico.length;
+    const [cmd, ...args] = texto.split(/\s+/);
+    const c = COMANDOS[cmd.toLowerCase()];
+    if (c) c[1](args);
+    else print(h("span", { class: "t-err", text: "comando não encontrado: " + cmd }), ". Digite ", h("b", { text: "help" }), " para ver a lista.");
+  };
+  neofetch();
+  print(h("span", { class: "t-dim", text: "Digite " }), h("b", { class: "t-k", text: "help" }), h("span", { class: "t-dim", text: " para ver os comandos." }));
+  $("shell-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    executar(cmdInput.value);
+    cmdInput.value = "";
+  });
+  cmdInput.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowUp" && historico.length) {
+      e.preventDefault();
+      hIndex = Math.max(0, hIndex - 1);
+      cmdInput.value = historico[hIndex];
+    } else if (e.key === "ArrowDown" && historico.length) {
+      e.preventDefault();
+      hIndex = Math.min(historico.length, hIndex + 1);
+      cmdInput.value = historico[hIndex] || "";
+    } else if (e.key === "Tab" && cmdInput.value.trim()) {
+      const parcial = cmdInput.value.trim().toLowerCase();
+      const achado = Object.keys(COMANDOS).find((k) => k.startsWith(parcial));
+      if (achado) { e.preventDefault(); cmdInput.value = achado + " "; }
+    }
+  });
+  // Sugestões: digita o comando na linha e executa
+  let digitando = false;
+  const sugerir = (cmd) => {
+    if (digitando) return;
+    if (reduceMotion) { executar(cmd); return; }
+    digitando = true;
+    let i = 0;
+    cmdInput.value = "";
+    const passo = () => {
+      cmdInput.value = cmd.slice(0, ++i);
+      if (i < cmd.length) setTimeout(passo, 35);
+      else setTimeout(() => { executar(cmd); cmdInput.value = ""; digitando = false; }, 160);
+    };
+    passo();
+  };
+  $("shell-hints").replaceChildren(
+    ...["help", "whoami", "neofetch", "projetos", "skills", "infra", "repos", "contato", "sudo contratar", "clear"].map((c) => {
+      const b = h("button", { class: "hint", type: "button", text: c });
+      b.addEventListener("click", () => sugerir(c));
+      return b;
+    })
+  );
+  out.addEventListener("click", (e) => { if (!e.target.closest("a") && !getSelection().toString()) cmdInput.focus({ preventScroll: true }); });
+  $("open-terminal").addEventListener("click", () => setTimeout(() => cmdInput.focus({ preventScroll: true }), reduceMotion ? 0 : 650));
+
+  /* ================= Aviso de trechos pendentes ================= */
+  const pendentes = document.querySelectorAll("main .todo").length;
+  const notice = $("notice");
+  notice.hidden = pendentes === 0;
+  notice.textContent = pendentes === 1
+    ? "Falta 1 informação: o trecho destacado. Complete no bloco PERFIL do código."
+    : "Faltam " + pendentes + " informações: os trechos destacados. Complete no bloco PERFIL do código.";
+
+  /* ================= Interações ================= */
+  const copyMsg = $("copy-msg");
+  $("copy-btn").addEventListener("click", () => {
+    const selecionar = () => {
+      const range = document.createRange();
+      range.selectNodeContents(emailLink);
+      const sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      copyMsg.textContent = "E-mail selecionado. Use Ctrl+C para copiar.";
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(C.email).then(() => { copyMsg.textContent = "E-mail copiado."; }, selecionar);
+    } else {
+      selecionar();
+    }
+  });
+
+  const top = $("top");
+  const menuBtn = $("menu-btn");
+  const setMenu = (open) => { top.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", String(open)); };
+  menuBtn.addEventListener("click", () => setMenu(!top.classList.contains("open")));
+  $("nav-links").addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+
+  // Funções digitadas
+  const roleEl = $("role-text");
+  const words = P.funcoes;
+  roleEl.textContent = words[0] || "";
+  if (!reduceMotion && words.length > 1) {
+    let w = 0, i = words[0].length, apagando = true;
+    const tick = () => {
+      i += apagando ? -1 : 1;
+      roleEl.textContent = words[w].slice(0, i);
+      let espera = apagando ? 35 : 80;
+      if (!apagando && i === words[w].length) { apagando = true; espera = 2200; }
+      else if (apagando && i === 0) { apagando = false; w = (w + 1) % words.length; espera = 350; }
+      setTimeout(tick, espera);
+    };
+    setTimeout(tick, 2600);
+  }
+
+  // Rolagem: barra de leitura, cabeçalho, botão de topo e linha da trajetória
+  const toTop = $("to-top"), progress = $("progress"), timeline = $("timeline"), tlBar = $("tl-progress");
+  const tlItems = [...timeline.querySelectorAll(".tl-item")];
+  const aoRolar = () => {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.setProperty("--p", max > 0 ? (y / max).toFixed(4) : 0);
+    top.classList.toggle("scrolled", y > 8);
+    toTop.hidden = y < 700;
+    const corpo = timeline.querySelector(".tl-body");
+    if (corpo) {
+      const tr = timeline.getBoundingClientRect();
+      tlBar.style.left = corpo.getBoundingClientRect().left - tr.left + "px";
+      const alvo = innerHeight * 0.62 - tr.top;
+      tlBar.style.height = Math.max(0, Math.min(tr.height, alvo)) + "px";
+      tlItems.forEach((it) => it.classList.toggle("lit", it.getBoundingClientRect().top + 14 < innerHeight * 0.62));
+    }
+  };
+  let rolando = 0;
+  addEventListener("scroll", () => { if (!rolando) rolando = requestAnimationFrame(() => { aoRolar(); rolando = 0; }); }, { passive: true });
+  addEventListener("resize", aoRolar);
+  aoRolar();
+  toTop.addEventListener("click", () => scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+
+  const navLinks = [...document.querySelectorAll(".nav-links a")];
+  const spy = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      for (const a of navLinks) {
+        if (a.getAttribute("href") === "#" + e.target.id) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      }
+    }
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
+
+  // Títulos: um brilho passa quando a seção aparece. Números: contam até o valor.
+  const titulos = [...document.querySelectorAll(".sec-head h2")];
+  const contar = (el) => {
+    const fim = parseInt(el.dataset.count, 10);
+    const t0 = performance.now();
+    const passo = (agoraMs) => {
+      const k = Math.min(1, (agoraMs - t0) / 1400);
+      el.textContent = String(Math.round(fim * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) requestAnimationFrame(passo);
+    };
+    requestAnimationFrame(passo);
+  };
+  if (!reduceMotion) {
+    titulos.forEach((t) => t.classList.add("sweep"));
+    const olho = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        olho.unobserve(e.target);
+        if (e.target.dataset.count) contar(e.target);
+        else e.target.classList.add("go");
+      }
+    }, { threshold: 0.6 });
+    titulos.forEach((t) => olho.observe(t));
+    document.querySelectorAll("[data-count]").forEach((n) => olho.observe(n));
+  }
+
+  // Luz do mouse, brilho e inclinação 3D dos cartões
+  if (finePointer && !reduceMotion) {
+    const spot = $("spot");
+    let raf = 0, mx = 0, my = 0;
+    addEventListener("pointermove", (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!raf) {
+        raf = requestAnimationFrame(() => {
+          spot.style.setProperty("--mx", mx + "px");
+          spot.style.setProperty("--my", my + "px");
+          raf = 0;
+        });
+      }
+      const glowEl = e.target.closest && e.target.closest(".glow");
+      if (glowEl) {
+        const r = glowEl.getBoundingClientRect();
+        glowEl.style.setProperty("--x", e.clientX - r.left + "px");
+        glowEl.style.setProperty("--y", e.clientY - r.top + "px");
+      }
+    }, { passive: true });
+    document.querySelectorAll(".tilt").forEach((el) => {
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.transform = "perspective(1000px) rotateX(" + (-y * 5).toFixed(2) + "deg) rotateY(" + (x * 6).toFixed(2) + "deg) translateY(-3px)";
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+  }
+  if (reduceMotion) { try { $("net").pauseAnimations(); } catch (e) { /* ignora */ } }
+
+  /* ================= Circuito animado no fundo do início ================= */
+  function circuito(canvas) {
+    const ctx = canvas.getContext("2d");
+    const camada = document.createElement("canvas");
+    const lctx = camada.getContext("2d");
+    const DIRS = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]];
+    const CAUDA = 34;
+    let W = 1, H = 1, dpr = 1, trilhas = [], pulsos = [], cores = {}, raf = 0, ultimo = 0, visivel = true;
+    const rng = (seed) => () => {
+      seed = (seed + 0x6d2b79f5) | 0;
+      let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    const lerCores = () => {
+      const cs = getComputedStyle(root);
+      cores = {
+        trilha: cs.getPropertyValue("--line").trim(),
+        a: cs.getPropertyValue("--primary").trim(),
+        b: cs.getPropertyValue("--accent").trim(),
+        fundo: cs.getPropertyValue("--bg").trim()
+      };
+    };
+    const montar = () => {
+      const r = canvas.getBoundingClientRect();
+      W = Math.max(1, r.width);
+      H = Math.max(1, r.height);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      for (const c of [canvas, camada]) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+      const rand = rng(2026), G = 26;
+      const cols = Math.ceil(W / G), rows = Math.ceil(H / G);
+      const total = Math.max(16, Math.round((W * H) / 13000));
+      trilhas = [];
+      for (let n = 0; n < total; n++) {
+        let x = Math.floor(rand() * cols), y = Math.floor(rand() * rows), d = Math.floor(rand() * 4) * 2;
+        const pts = [[x * G, y * G]];
+        const segs = 2 + Math.floor(rand() * 3);
+        for (let s = 0; s < segs; s++) {
+          const passos = d % 2 ? 1 + Math.floor(rand() * 3) : 2 + Math.floor(rand() * 7);
+          x += DIRS[d][0] * passos;
+          y += DIRS[d][1] * passos;
+          pts.push([x * G, y * G]);
+          d = (d + (rand() < 0.5 ? 1 : 7)) % 8;
+        }
+        const lens = [0];
+        for (let k = 1; k < pts.length; k++) lens.push(lens[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+        trilhas.push({ pts, lens, total: lens[lens.length - 1] });
+      }
+      pulsos = trilhas.filter((_, k) => k % 3 !== 2).map((tr, k) => ({ tr, pos: rand() * (tr.total + CAUDA), vel: 45 + rand() * 75, espera: 0, cor: k % 2 ? "b" : "a" }));
+      pintarCamada();
+    };
+    const pintarCamada = () => {
+      lctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      lctx.clearRect(0, 0, W, H);
+      lctx.lineCap = "round";
+      lctx.lineJoin = "round";
+      lctx.lineWidth = 1.5;
+      lctx.strokeStyle = cores.trilha;
+      for (const tr of trilhas) {
+        lctx.beginPath();
+        tr.pts.forEach(([x, y], k) => (k ? lctx.lineTo(x, y) : lctx.moveTo(x, y)));
+        lctx.stroke();
+      }
+      lctx.fillStyle = cores.fundo;
+      for (const tr of trilhas) {
+        for (const [x, y] of [tr.pts[0], tr.pts[tr.pts.length - 1]]) {
+          lctx.beginPath();
+          lctx.arc(x, y, 3.5, 0, Math.PI * 2);
+          lctx.fill();
+          lctx.stroke();
+        }
+      }
+    };
+    const trecho = (tr, a, b) => {
+      a = Math.max(0, a);
+      b = Math.min(tr.total, b);
+      if (b <= a) return;
+      ctx.beginPath();
+      let comecou = false;
+      for (let k = 1; k < tr.pts.length; k++) {
+        const s = tr.lens[k - 1], e = tr.lens[k];
+        if (e < a) continue;
+        if (s > b) break;
+        const [x0, y0] = tr.pts[k - 1], [x1, y1] = tr.pts[k];
+        const L = e - s || 1;
+        const t0 = Math.max(0, (a - s) / L), t1 = Math.min(1, (b - s) / L);
+        if (!comecou) { ctx.moveTo(x0 + (x1 - x0) * t0, y0 + (y1 - y0) * t0); comecou = true; }
+        ctx.lineTo(x0 + (x1 - x0) * t1, y0 + (y1 - y0) * t1);
+      }
+      ctx.stroke();
+    };
+    const pintar = (avancar, dt) => {
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(camada, 0, 0);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      for (const p of pulsos) {
+        if (avancar) {
+          if (p.espera > 0) { p.espera -= dt; continue; }
+          p.pos += p.vel * dt;
+          if (p.pos - CAUDA > p.tr.total) { p.pos = 0; p.espera = 0.4 + Math.random() * 2.6; continue; }
+        }
+        ctx.strokeStyle = cores[p.cor];
+        ctx.globalAlpha = 0.22;
+        ctx.lineWidth = 6;
+        trecho(p.tr, p.pos - CAUDA, p.pos);
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 2;
+        trecho(p.tr, p.pos - CAUDA, p.pos);
+      }
+      ctx.globalAlpha = 1;
+    };
+    const quadro = (agoraMs) => {
+      const dt = Math.min(0.05, (agoraMs - ultimo) / 1000);
+      ultimo = agoraMs;
+      pintar(true, dt);
+      raf = requestAnimationFrame(quadro);
+    };
+    const iniciar = () => {
+      if (reduceMotion || raf || !visivel || document.hidden) return;
+      ultimo = performance.now();
+      raf = requestAnimationFrame(quadro);
+    };
+    const parar = () => { cancelAnimationFrame(raf); raf = 0; };
+    const atualizar = () => { lerCores(); montar(); pintar(false, 0); };
+    atualizar();
+    iniciar();
+    let ultimaLargura = W;
+    new ResizeObserver(() => {
+      const w = canvas.getBoundingClientRect().width;
+      if (Math.abs(w - ultimaLargura) < 2) return;
+      ultimaLargura = w;
+      montar();
+      pintar(false, 0);
+    }).observe(canvas);
+    new IntersectionObserver(([e]) => { visivel = e.isIntersecting; if (visivel) iniciar(); else parar(); }).observe(canvas);
+    document.addEventListener("visibilitychange", () => (document.hidden ? parar() : iniciar()));
+    return { atualizar };
+  }
+  const placa = circuito($("circuit"));
+
+  /* ================= Temas ================= */
+  const prefersLight = matchMedia("(prefers-color-scheme: light)");
+  const swatches = [...document.querySelectorAll(".sw")];
+  const temaAtual = () => {
+    if (root.dataset.palette === "circuito") return "circuito";
+    const modo = root.dataset.theme || (prefersLight.matches ? "light" : "dark");
+    return modo === "light" ? "claro" : "noite";
+  };
+  const marcar = () => { const t = temaAtual(); swatches.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tema === t))); };
+  const aplicarTema = (t) => {
+    if (t === "circuito") { root.dataset.palette = "circuito"; root.dataset.theme = "dark"; }
+    else { delete root.dataset.palette; root.dataset.theme = t === "claro" ? "light" : "dark"; }
+  };
+  try {
+    const salvo = localStorage.getItem("tema");
+    if (salvo === "noite" || salvo === "circuito" || salvo === "claro") aplicarTema(salvo);
+  } catch (e) { /* sem armazenamento: segue o tema do sistema */ }
+  swatches.forEach((b) => b.addEventListener("click", () => {
+    aplicarTema(b.dataset.tema);
+    try { localStorage.setItem("tema", b.dataset.tema); } catch (e) { /* ignora */ }
+  }));
+  new MutationObserver(() => { marcar(); placa.atualizar(); }).observe(root, { attributes: true, attributeFilter: ["data-theme", "data-palette"] });
+  if (prefersLight.addEventListener) prefersLight.addEventListener("change", () => { marcar(); placa.atualizar(); });
+  marcar();
+  placa.atualizar();
+})();
+</script>
+
+</body>
+</html>
